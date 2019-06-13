@@ -1,0 +1,56 @@
+html {
+  font-size: 62.5%;
+}
+body {
+  font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
+  font-size: 1.6rem;
+}
+.header {
+  height: 5.4rem;
+  box-sizing: border-box;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  align-items: center;
+}
+.title {
+  box-sizing: border-box;
+  padding: 0 2rem;
+  font-size: 2.4rem;
+  font-weight: 500;
+  line-height: 5.4rem;
+}
+.copy {
+  height: 3rem;
+  background: #1890ff;
+  line-height: 3rem;
+  padding: 0 2rem;
+  color: #ffffff;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+.editor {
+  display: flex
+}
+.editor-item {
+  flex: 0 0 50%;
+  overflow: hidden;
+}
+.textarea {
+  resize: none;
+  outline: 0;
+  border: none;
+  height: 100%;
+  width: 100%;
+  background: #eee;
+  box-sizing: border-box;
+  padding: 1.6rem
+}
+
+.paper {
+  height: 100%;
+  box-sizing: border-box;
+  padding: 1.6rem;
+  word-break: break-all;
+  overflow-x: hidden;
+  overflow-y: auto;
+}

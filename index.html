@@ -5,12 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="shortcut icon" href="favicon.png" type="image/png">
+  <link rel="stylesheet" href="./css/normalize.css">
+  <link rel="stylesheet" href="./css/styles/a11y-dark.css">
   <link rel="stylesheet" href="./css/index.css">
+  <link rel="stylesheet" href="./css/theme/default.css">
+  <script src="./js/highlight.min.js"></script>
+  <script src="./js/markdown-it.min.js"></script>
+  <script src="./js/clipboard.min.js"></script>
+  <script src="./js/tata.js"></script>
   <title>Wechat Markdown Editor</title>
 </head>
 <body>
-  <h1>Wechat Markdown Editor</h1>
-  <h1>Nice</h1>
+  <header class="header">
+    <div class="title">Wechat Markdown Editor</div>
+    <div id="copy" class="copy" data-clipboard-action="copy" data-clipboard-target="#paper">Copy</div>
+  </header>
+
+  <div id="editor" class="editor">
+    <div class="editor-item">
+      <textarea id="textarea" class="textarea"></textarea>
+    </div>
+    <div class="editor-item">
+      <div id="paper" class="paper"></div>
+    </div>
+  </div>
 
   <script src="./js/index.js"></script>
 </body>
