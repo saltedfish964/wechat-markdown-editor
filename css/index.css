@@ -41,9 +41,27 @@ body {
   border: none;
   height: 100%;
   width: 100%;
-  background: #eee;
   box-sizing: border-box;
   padding: 1.6rem
+}
+
+.textarea::-webkit-scrollbar,
+.paper::-webkit-scrollbar {
+  width: 5px;
+  background: #f1f1f1;
+  border-radius: 2.5px;
+}
+
+.textarea::-webkit-scrollbar-track,
+.paper::-webkit-scrollbar-track {
+  width: 5px;
+  border-radius: 2.5px;
+}
+
+.textarea::-webkit-scrollbar-thumb,
+.paper::-webkit-scrollbar-thumb {
+  background: #1890ff;
+  border-radius: 2.5px;
 }
 
 .paper {

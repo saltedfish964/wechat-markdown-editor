@@ -1,3 +1,10 @@
+function init () {
+  // 初始化高度
+  var editorEle = document.getElementById('editor');
+
+  editorEle.style.height = `${document.documentElement.clientHeight - 54}px`;
+}
+
 function mdConfig () {
   var md = window.markdownit({
     typographer: true,
@@ -45,8 +52,6 @@ function mdConfig () {
 
   md.use(window.markdownitAbbr);
 
-  console.log(md)
-
   return md;
 }
 
@@ -71,6 +76,55 @@ function editor () {
   }
 }
 
+function scrollAsync () {
+  var textareaEle = document.getElementById('textarea');
+  var paperEle = document.getElementById('paper');
+
+  var textareaEleScrollHeight = textareaEle.scrollHeight;
+  var paperEleScrollHeight = paperEle.scrollHeight;
+
+  textareaEle.onmouseenter = function () {
+    var textareaEleScrollTopInit = textareaEle.scrollTop;
+
+    var scaleInit = textareaEleScrollTopInit / textareaEleScrollHeight;
+    scaleInit = scaleInit.toFixed(2);
+
+    paperEle.scrollTop = paperEleScrollHeight * scaleInit;
+
+    textareaEle.onscroll = function () {
+      var textareaEleScrollTop = textareaEle.scrollTop;
+      var scale = textareaEleScrollTop / textareaEleScrollHeight;
+      scale = scale.toFixed(2);
+
+      paperEle.scrollTop = paperEleScrollHeight * scale;
+    }
+  }
+
+  textareaEle.onmouseleave = function () {
+    textareaEle.onscroll = null;
+  }
+
+  paperEle.onmouseenter = function () {
+    var paperEleScrollTopInit = paperEle.scrollTop;
+    var scaleInit = paperEleScrollTopInit / paperEleScrollHeight;
+    scaleInit = scaleInit.toFixed(2);
+
+    textareaEle.scrollTop = textareaEleScrollHeight * scaleInit;
+
+    paperEle.onscroll = function () {
+      var paperEleScrollTop = paperEle.scrollTop;
+      var scale = paperEleScrollTop / paperEleScrollHeight;
+      scale = scale.toFixed(2);
+
+      textareaEle.scrollTop = textareaEleScrollHeight * scale;
+    }
+  }
+
+  paperEle.onmouseleave = function () {
+    paperEle.onscroll = null;
+  }
+}
+
 function copy () {
   var clipboard = new ClipboardJS('#copy');
 
@@ -92,12 +146,11 @@ function copy () {
 }
 
 function main () {
-  // 初始化高度
-  var editorEle = document.getElementById('editor');
-
-  editorEle.style.height = `${document.documentElement.clientHeight - 54}px`;
+  init();
 
   editor();
+
+  scrollAsync();
 
   copy();
 }
