@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="./css/normalize.css">
   <link rel="stylesheet" href="./css/theme/default.css">
   <link rel="stylesheet" href="./css/index.css">
-  <link rel="stylesheet" href="./css/styles/a11y-dark.css">
+  <link id="theme-css" rel="stylesheet" href="./css/styles/default.min.css">
   <script src="./js/highlight.min.js"></script>
   <script src="./js/markdown/markdown-it.js"></script>
   <script src="./js/markdown/markdown-it-emoji.min.js"></script>
@@ -23,13 +23,18 @@
   <script src="./js/clipboard.min.js"></script>
   <script src="./js/tata.js"></script>
   <script src="./js/velocity.min.js"></script>
+  <script src="./js/code-theme.js"></script>
   <title>Wechat Markdown Editor</title>
 </head>
 <body>
   <header class="header">
     <div class="title">Wechat Markdown Editor</div>
     <div id="copy" class="copy" data-clipboard-action="copy" data-clipboard-target="#paper">Copy</div>
-    <div id="code-btn">Code Theme</div>
+    <div class="code-btn">
+      <span id="code-btn">Code Theme</span>
+      <div id="triangle" class="triangle"></div>
+      <ul class="styles-list" id="styles-list"></ul>
+    </div>
   </header>
 
   <div id="editor" class="editor">

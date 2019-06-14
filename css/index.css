@@ -11,6 +11,7 @@ body {
   border-bottom: 1px solid #eee;
   display: flex;
   align-items: center;
+  background: #cbf1f5;
 }
 .title {
   box-sizing: border-box;
@@ -46,6 +47,7 @@ body {
 }
 .copy:hover {
   cursor: pointer;
+  background: #40a9ff;
 }
 .copy:hover::after {
   transition: transform 0.45s ease-in-out;
@@ -69,6 +71,7 @@ body {
 }
 
 .textarea::-webkit-scrollbar,
+.styles-list::-webkit-scrollbar,
 .paper-wrap::-webkit-scrollbar {
   width: 5px;
   background: #f1f1f1;
@@ -76,12 +79,14 @@ body {
 }
 
 .textarea::-webkit-scrollbar-track,
+.styles-list::-webkit-scrollbar-track,
 .paper-wrap::-webkit-scrollbar-track {
   width: 5px;
   border-radius: 2.5px;
 }
 
 .textarea::-webkit-scrollbar-thumb,
+.styles-list::-webkit-scrollbar-thumb,
 .paper-wrap::-webkit-scrollbar-thumb {
   background: #1890ff;
   border-radius: 2.5px;
@@ -100,4 +105,61 @@ body {
   box-shadow: 0 10px 40px -10px rgba(0,64,128,.2);
   overflow: hidden;
   padding: 1.6rem;
+}
+
+.code-btn {
+  position: relative;
+  word-break: normal;
+}
+
+.styles-list {
+  overflow-y: auto;
+  position: absolute;
+  top: 29px;
+  left: 0;
+  height: 200px;
+  width: 90px;
+  background: #ffffff;
+  border-radius: 5px;
+  box-shadow: 0 10px 40px -10px rgba(0,64,128,.2);
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  display: none;
+}
+
+.styles-list li {
+  list-style: none;
+  text-align: center;
+  height: 30px;
+  line-height: 30px;
+  width: 100%;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  box-sizing: border-box;
+  padding: 0 5px;
+}
+
+.active {
+  color: #40a9ff;
+}
+
+.styles-list li:hover {
+  background: #40a9ff;
+  cursor: pointer;
+  color: #ffffff;
+}
+
+.triangle {
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid #ffffff;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  position: absolute;
+  bottom: -11px;
+  left: 40px;
+  display: none;
 }
