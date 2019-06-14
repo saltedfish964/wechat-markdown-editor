@@ -88,7 +88,6 @@ body {
 }
 
 .paper-wrap {
-  overflow-x: hidden;
   overflow-y: auto;
   box-sizing: border-box;
 }
@@ -97,7 +96,7 @@ body {
   width: 375px;
   box-sizing: border-box;
   word-break: break-all;
-  margin: 5rem auto;
+  margin: 3rem auto;
   box-shadow: 0 10px 40px -10px rgba(0,64,128,.2);
   overflow: hidden;
   padding: 1.6rem;

@@ -80,23 +80,21 @@ function scrollAsync () {
   var textareaEle = document.getElementById('textarea');
   var paperEle = document.getElementById('paper-wrap');
 
-  var textareaEleScrollHeight = textareaEle.scrollHeight;
-  var paperEleScrollHeight = paperEle.scrollHeight;
+  var documentHeight = document.documentElement.clientHeight;
+  var textareaEleScrollHeight = textareaEle.scrollHeight - documentHeight;
+  var paperEleScrollHeight = paperEle.scrollHeight - documentHeight;
+
+  window.onresize = function () {
+    textareaEleScrollHeight = textareaEle.scrollHeight - documentHeight;
+    paperEleScrollHeight = paperEle.scrollHeight - documentHeight;
+    init();
+  }
 
   textareaEle.onmouseenter = function () {
-    var textareaEleScrollTopInit = textareaEle.scrollTop;
-
-    var scaleInit = textareaEleScrollTopInit / textareaEleScrollHeight;
-    scaleInit = scaleInit.toFixed(2);
-
-    console.log(scaleInit)
-
-    paperEle.scrollTop = paperEleScrollHeight * scaleInit;
-
     textareaEle.onscroll = function () {
       var textareaEleScrollTop = textareaEle.scrollTop;
       var scale = textareaEleScrollTop / textareaEleScrollHeight;
-      scale = scale.toFixed(2);
+      scale = scale.toFixed(4);
 
       paperEle.scrollTop = paperEleScrollHeight * scale;
     }
@@ -107,18 +105,10 @@ function scrollAsync () {
   }
 
   paperEle.onmouseenter = function () {
-    var paperEleScrollTopInit = paperEle.scrollTop;
-    var scaleInit = paperEleScrollTopInit / paperEleScrollHeight;
-    scaleInit = scaleInit.toFixed(2);
-
-    textareaEle.scrollTop = textareaEleScrollHeight * scaleInit;
-
-    console.log(scaleInit)
-
     paperEle.onscroll = function () {
       var paperEleScrollTop = paperEle.scrollTop;
       var scale = paperEleScrollTop / paperEleScrollHeight;
-      scale = scale.toFixed(2);
+      scale = scale.toFixed(4);
 
       textareaEle.scrollTop = textareaEleScrollHeight * scale;
     }
