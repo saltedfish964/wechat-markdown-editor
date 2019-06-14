@@ -22,29 +22,19 @@
   <script src="./js/markdown/markdown-it-abbr.min.js"></script>
   <script src="./js/clipboard.min.js"></script>
   <script src="./js/tata.js"></script>
+  <script src="./js/velocity.min.js"></script>
   <title>Wechat Markdown Editor</title>
 </head>
 <body>
   <header class="header">
     <div class="title">Wechat Markdown Editor</div>
     <div id="copy" class="copy" data-clipboard-action="copy" data-clipboard-target="#paper">Copy</div>
+    <div id="code-btn">Code Theme</div>
   </header>
 
   <div id="editor" class="editor">
     <div class="editor-item">
       <textarea id="textarea" class="textarea">
----
-__Advertisement :)__
-
-- __[pica](https://nodeca.github.io/pica/demo/)__ - high quality and fast image
-resize in browser.
-- __[babelfish](https://github.com/nodeca/babelfish/)__ - developer friendly
-i18n with plurals support and easy syntax.
-
-You will like those projects!
-
----
-
 # h1 Heading 8-)
 ## h2 Heading
 ### h3 Heading
@@ -53,7 +43,7 @@ You will like those projects!
 ###### h6 Heading
 
 
-## Horizontal Rules
+## 分割线
 
 ___
 
@@ -146,7 +136,7 @@ Syntax highlighting
 
 ``` js
 var foo = function (bar) {
-return bar++;
+  return bar++;
 };
 
 console.log(foo(5));
@@ -281,7 +271,7 @@ It converts "HTML", but keep intact partial entries like "xxxHTMLyyy" and so on.
 :::
       </textarea>
     </div>
-    <div class="editor-item">
+    <div id="paper-wrap" class="editor-item paper-wrap">
       <div id="paper" class="paper"></div>
     </div>
   </div>

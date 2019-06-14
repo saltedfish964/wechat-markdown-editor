@@ -18,15 +18,38 @@ body {
   font-size: 2.4rem;
   font-weight: 500;
   line-height: 5.4rem;
+  flex: 0 80%;
 }
 .copy {
-  height: 3rem;
-  background: #1890ff;
-  line-height: 3rem;
-  padding: 0 2rem;
-  color: #ffffff;
-  border-radius: 0.5rem;
+  z-index: 1;
+  position: relative;
+  font-size: inherit;
+  font-family: inherit;
+  color: white;
+  padding: 0.5em 1em;
+  outline: none;
+  border: none;
+  background-color: #3490de;
+  overflow: hidden;
+  border-radius: 5px;
+  margin-right: 2rem;
+}
+.copy::after {
+  content: '';
+  z-index: -1;
+  background-color: hsla(0, 0%, 100%, 0.2);
+  position: absolute;
+  top: -50%;
+  bottom: -50%;
+  width: 1.25em;
+  transform: translateX(-525%) rotate(35deg);
+}
+.copy:hover {
   cursor: pointer;
+}
+.copy:hover::after {
+  transition: transform 0.45s ease-in-out;
+  transform: translateX(200%) rotate(35deg);
 }
 .editor {
   display: flex
@@ -46,29 +69,36 @@ body {
 }
 
 .textarea::-webkit-scrollbar,
-.paper::-webkit-scrollbar {
+.paper-wrap::-webkit-scrollbar {
   width: 5px;
   background: #f1f1f1;
   border-radius: 2.5px;
 }
 
 .textarea::-webkit-scrollbar-track,
-.paper::-webkit-scrollbar-track {
+.paper-wrap::-webkit-scrollbar-track {
   width: 5px;
   border-radius: 2.5px;
 }
 
 .textarea::-webkit-scrollbar-thumb,
-.paper::-webkit-scrollbar-thumb {
+.paper-wrap::-webkit-scrollbar-thumb {
   background: #1890ff;
   border-radius: 2.5px;
 }
 
-.paper {
-  height: 100%;
-  box-sizing: border-box;
-  padding: 1.6rem;
-  word-break: break-all;
+.paper-wrap {
   overflow-x: hidden;
   overflow-y: auto;
+  box-sizing: border-box;
+}
+
+.paper {
+  width: 375px;
+  box-sizing: border-box;
+  word-break: break-all;
+  margin: 5rem auto;
+  box-shadow: 0 10px 40px -10px rgba(0,64,128,.2);
+  overflow: hidden;
+  padding: 1.6rem;
 }

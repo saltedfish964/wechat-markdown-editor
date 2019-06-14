@@ -78,7 +78,7 @@ function editor () {
 
 function scrollAsync () {
   var textareaEle = document.getElementById('textarea');
-  var paperEle = document.getElementById('paper');
+  var paperEle = document.getElementById('paper-wrap');
 
   var textareaEleScrollHeight = textareaEle.scrollHeight;
   var paperEleScrollHeight = paperEle.scrollHeight;
@@ -88,6 +88,8 @@ function scrollAsync () {
 
     var scaleInit = textareaEleScrollTopInit / textareaEleScrollHeight;
     scaleInit = scaleInit.toFixed(2);
+
+    console.log(scaleInit)
 
     paperEle.scrollTop = paperEleScrollHeight * scaleInit;
 
@@ -110,6 +112,8 @@ function scrollAsync () {
     scaleInit = scaleInit.toFixed(2);
 
     textareaEle.scrollTop = textareaEleScrollHeight * scaleInit;
+
+    console.log(scaleInit)
 
     paperEle.onscroll = function () {
       var paperEleScrollTop = paperEle.scrollTop;
@@ -145,12 +149,17 @@ function copy () {
   });
 }
 
+function velocityAnimation () {
+}
+
 function main () {
   init();
 
   editor();
 
   scrollAsync();
+
+  velocityAnimation();
 
   copy();
 }
