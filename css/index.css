@@ -4,6 +4,7 @@ html {
 body {
   font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
   font-size: 1.6rem;
+  overflow: hidden;
 }
 .header {
   height: 5.4rem;
@@ -19,7 +20,9 @@ body {
   font-size: 2.4rem;
   font-weight: 500;
   line-height: 5.4rem;
-  flex: 0 80%;
+  flex: 0 75%;
+  color: #3f72af;
+  cursor: default;
 }
 .copy {
   z-index: 1;
@@ -30,28 +33,32 @@ body {
   padding: 0.5em 1em;
   outline: none;
   border: none;
-  background-color: #3490de;
-  overflow: hidden;
+  background-color: #1890ff;
   border-radius: 5px;
-  margin-right: 2rem;
+  margin-right: 4rem;
 }
-.copy::after {
+.copy::before {
   content: '';
   z-index: -1;
-  background-color: hsla(0, 0%, 100%, 0.2);
   position: absolute;
-  top: -50%;
-  bottom: -50%;
-  width: 1.25em;
-  transform: translateX(-525%) rotate(35deg);
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border: 4px solid #1890ff;
+  transform-origin: center;
+  border-radius: 5px;
+  transform: scale(1);
 }
 .copy:hover {
   cursor: pointer;
   background: #40a9ff;
 }
-.copy:hover::after {
-  transition: transform 0.45s ease-in-out;
-  transform: translateX(200%) rotate(35deg);
+.copy:hover::before {
+  transition: all 0.75s ease-in-out;
+  transform-origin: center;
+  transform: scale(1.75);
+  opacity: 0;
 }
 .editor {
   display: flex
@@ -97,27 +104,34 @@ body {
   box-sizing: border-box;
 }
 
-.paper {
+.content {
   width: 375px;
+  box-shadow: 0 10px 40px -10px rgba(0,64,128,.2);
+  margin: 3rem auto;
+}
+
+.paper {
+  width: 100%;
   box-sizing: border-box;
   word-break: break-all;
-  margin: 3rem auto;
-  box-shadow: 0 10px 40px -10px rgba(0,64,128,.2);
   overflow: hidden;
   padding: 1.6rem;
 }
 
-.code-btn {
+.code-btn,
+.page-theme {
   position: relative;
   word-break: normal;
+  margin-right: 4rem;
 }
 
-.styles-list {
+.styles-list,
+.page-list {
   overflow-y: auto;
   position: absolute;
   top: 29px;
   left: 0;
-  height: 200px;
+  max-height: 200px;
   width: 90px;
   background: #ffffff;
   border-radius: 5px;
@@ -126,29 +140,6 @@ body {
   padding: 0;
   box-sizing: border-box;
   display: none;
-}
-
-.styles-list li {
-  list-style: none;
-  text-align: center;
-  height: 30px;
-  line-height: 30px;
-  width: 100%;
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
-  box-sizing: border-box;
-  padding: 0 5px;
-}
-
-.active {
-  color: #40a9ff;
-}
-
-.styles-list li:hover {
-  background: #40a9ff;
-  cursor: pointer;
-  color: #ffffff;
 }
 
 .triangle {
@@ -162,4 +153,60 @@ body {
   bottom: -11px;
   left: 40px;
   display: none;
+}
+
+.styles-list li,
+.page-list li {
+  list-style: none;
+  text-align: center;
+  height: 30px;
+  line-height: 30px;
+  width: 100%;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  box-sizing: border-box;
+  padding: 0 5px;
+}
+
+.styles-list li:hover,
+.page-list li:hover {
+  background: #40a9ff;
+  cursor: pointer;
+  color: #ffffff;
+}
+
+.active {
+  color: #930077;
+  border-bottom: 4px solid #930077;
+}
+
+.theme-btn,
+.page-theme-btn {
+  position: relative;
+}
+
+.theme-btn,
+.page-theme-btn {
+  cursor: pointer;
+}
+
+.theme-btn::before,
+.page-theme-btn::before {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: #930077;
+  transform-origin: bottom right;
+  transform: scaleX(0);
+  transition: transform 0.5s ease;
+}
+
+.theme-btn:hover::before,
+.page-theme-btn:hover::before {
+  transform-origin: bottom left;
+  transform: scaleX(1);
 }

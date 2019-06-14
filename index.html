@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="shortcut icon" href="favicon.png" type="image/png">
   <link rel="stylesheet" href="./css/normalize.css">
-  <link rel="stylesheet" href="./css/theme/default.css">
+  <link id="page-theme-css" rel="stylesheet" href="./css/theme/default.css">
   <link rel="stylesheet" href="./css/index.css">
   <link id="theme-css" rel="stylesheet" href="./css/styles/default.min.css">
   <script src="./js/highlight.min.js"></script>
@@ -24,6 +24,7 @@
   <script src="./js/tata.js"></script>
   <script src="./js/velocity.min.js"></script>
   <script src="./js/code-theme.js"></script>
+  <script src="./js/page-theme.js"></script>
   <title>Wechat Markdown Editor</title>
 </head>
 <body>
@@ -31,9 +32,14 @@
     <div class="title">Wechat Markdown Editor</div>
     <div id="copy" class="copy" data-clipboard-action="copy" data-clipboard-target="#paper">Copy</div>
     <div class="code-btn">
-      <span id="code-btn">Code Theme</span>
+      <span id="code-btn" class="theme-btn">Code Theme</span>
       <div id="triangle" class="triangle"></div>
       <ul class="styles-list" id="styles-list"></ul>
+    </div>
+    <div class="page-theme">
+      <span class="page-theme-btn" id="page-theme-btn">Page Theme</span>
+      <div id="page-triangle" class="triangle"></div>
+      <ul class="page-list" id="page-list"></ul>
     </div>
   </header>
 
@@ -266,7 +272,9 @@ It converts "HTML", but keep intact partial entries like "xxxHTMLyyy" and so on.
       </textarea>
     </div>
     <div id="paper-wrap" class="editor-item paper-wrap">
-      <div id="paper" class="paper"></div>
+      <div class="content">
+        <div id="paper" class="paper"></div>
+      </div>
     </div>
   </div>
 
