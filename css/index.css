@@ -20,7 +20,7 @@ body {
   font-size: 2.4rem;
   font-weight: 500;
   line-height: 5.4rem;
-  flex: 0 75%;
+  flex: 0 66%;
   color: #3f72af;
   cursor: default;
 }
@@ -119,14 +119,16 @@ body {
 }
 
 .code-btn,
-.page-theme {
+.page-theme,
+.editor-theme {
   position: relative;
   word-break: normal;
   margin-right: 4rem;
 }
 
 .styles-list,
-.page-list {
+.page-list,
+.editor-list {
   overflow-y: auto;
   position: absolute;
   top: 29px;
@@ -156,7 +158,8 @@ body {
 }
 
 .styles-list li,
-.page-list li {
+.page-list li,
+.editor li {
   list-style: none;
   text-align: center;
   height: 30px;
@@ -170,7 +173,8 @@ body {
 }
 
 .styles-list li:hover,
-.page-list li:hover {
+.page-list li:hover,
+.editor li:hover {
   background: #40a9ff;
   cursor: pointer;
   color: #ffffff;
@@ -182,17 +186,20 @@ body {
 }
 
 .theme-btn,
-.page-theme-btn {
+.page-theme-btn,
+.editor-theme-btn {
   position: relative;
 }
 
 .theme-btn,
-.page-theme-btn {
+.page-theme-btn,
+.editor-theme-btn {
   cursor: pointer;
 }
 
 .theme-btn::before,
-.page-theme-btn::before {
+.page-theme-btn::before,
+.editor-theme-btn::before {
   content: '';
   position: absolute;
   bottom: -4px;
@@ -206,7 +213,8 @@ body {
 }
 
 .theme-btn:hover::before,
-.page-theme-btn:hover::before {
+.page-theme-btn:hover::before,
+.editor-theme-btn:hover::before {
   transform-origin: bottom left;
   transform: scaleX(1);
 }

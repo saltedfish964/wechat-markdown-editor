@@ -10,22 +10,7 @@
   <link id="page-theme-css" rel="stylesheet" href="./css/theme/default.css">
   <link rel="stylesheet" href="./css/index.css">
   <link id="theme-css" rel="stylesheet" href="./css/styles/default.min.css">
-  <script src="./js/highlight.min.js"></script>
-  <script src="./js/markdown/markdown-it.js"></script>
-  <script src="./js/markdown/markdown-it-emoji.min.js"></script>
-  <script src="./js/markdown/markdown-it-container.min.js"></script>
-  <script src="./js/markdown/markdown-it-sup.min.js"></script>
-  <script src="./js/markdown/markdown-it-sub.min.js"></script>
-  <script src="./js/markdown/markdown-it-ins.min.js"></script>
-  <script src="./js/markdown/markdown-it-mark.min.js"></script>
-  <script src="./js/markdown/markdown-it-footnote.min.js"></script>
-  <script src="./js/markdown/markdown-it-deflist.min.js"></script>
-  <script src="./js/markdown/markdown-it-abbr.min.js"></script>
-  <script src="./js/clipboard.min.js"></script>
-  <script src="./js/tata.js"></script>
-  <script src="./js/velocity.min.js"></script>
-  <script src="./js/code-theme.js"></script>
-  <script src="./js/page-theme.js"></script>
+  <link rel="stylesheet" href="./css/codemirror/codemirror.css">
   <title>Wechat Markdown Editor</title>
 </head>
 <body>
@@ -37,6 +22,8 @@
       data-clipboard-action="copy"
       data-clipboard-target="#paper"
     >Copy</div>
+
+    <!-- 渲染的代码样式 -->
     <div class="code-btn">
       <span id="code-btn" class="theme-btn">Code Theme</span>
       <div
@@ -46,6 +33,8 @@
       ></div>
       <ul class="styles-list animated bounceInUp" id="styles-list" style="display: none;"></ul>
     </div>
+
+    <!-- 渲染样式选择 -->
     <div class="page-theme">
       <span class="page-theme-btn" id="page-theme-btn">Page Theme</span>
       <div
@@ -54,6 +43,13 @@
         style="display: none;"
       ></div>
       <ul class="page-list animated bounceInUp" id="page-list" style="display: none;"></ul>
+    </div>
+
+    <!-- 编辑器样式选择 -->
+    <div class="editor-theme">
+      <span class="editor-theme-btn" id="editor-theme-btn">Editor Theme</span>
+      <div id="editor-triangle" class="triangle animated bounceInUp" style="display: none;"></div>
+      <ul class="editor-list animated bounceInUp" id="editor-list" style="display: none;"></ul>
     </div>
   </header>
 
@@ -292,6 +288,24 @@ It converts "HTML", but keep intact partial entries like "xxxHTMLyyy" and so on.
     </div>
   </div>
 
+  <script src="./js/highlight.min.js"></script>
+  <script src="./js/markdown/markdown-it.js"></script>
+  <script src="./js/markdown/markdown-it-emoji.min.js"></script>
+  <script src="./js/markdown/markdown-it-container.min.js"></script>
+  <script src="./js/markdown/markdown-it-sup.min.js"></script>
+  <script src="./js/markdown/markdown-it-sub.min.js"></script>
+  <script src="./js/markdown/markdown-it-ins.min.js"></script>
+  <script src="./js/markdown/markdown-it-mark.min.js"></script>
+  <script src="./js/markdown/markdown-it-footnote.min.js"></script>
+  <script src="./js/markdown/markdown-it-deflist.min.js"></script>
+  <script src="./js/markdown/markdown-it-abbr.min.js"></script>
+  <script src="./js/clipboard.min.js"></script>
+  <script src="./js/tata.js"></script>
+  <script src="./js/velocity.min.js"></script>
+  <script src="./js/code-theme.js"></script>
+  <script src="./js/page-theme.js"></script>
+  <script src="./js/codemirror/codemirror.js"></script>
+  <script src="./js/codemirror/markdown.js"></script>
   <script src="./js/index.js"></script>
 </body>
 </html>
