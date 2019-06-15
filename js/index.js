@@ -289,6 +289,7 @@ WechatMarkdownEdit.prototype.selectList = function (obj) {
   ListEle.getElementsByClassName('code-item')[active].classList.add('active');
 }
 
+// 创建样式列表
 WechatMarkdownEdit.prototype.initSelect = function () {
   var that = this;
 
@@ -326,5 +327,6 @@ window.onload = function () {
 }
 
 window.addEventListener('load', function () {
-  this.document.getElementsByTagName('body')[0].style.visibility = 'visible';
+  this.document.getElementById('loading').style.display = 'none';
+  this.document.getElementById('container').style.visibility = 'visible';
 })

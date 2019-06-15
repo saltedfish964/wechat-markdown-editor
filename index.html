@@ -14,49 +14,41 @@
   <link id="editor-theme-css" rel="stylesheet" href="./css/codemirror/theme/3024-night.css">
   <title>Wechat Markdown Editor</title>
 </head>
-<body style="visibility: hidden;">
-  <header class="header">
-    <div class="title">Wechat Markdown Editor</div>
-    <div
-      id="copy"
-      class="copy"
-      data-clipboard-action="copy"
-      data-clipboard-target="#paper"
-    >Copy</div>
+<body>
+  <div class="loading-wrap" id="loading">
+    <div class="loading"></div>
+  </div>
 
-    <!-- 渲染的代码样式 -->
-    <div class="code-btn">
-      <span id="code-btn" class="theme-btn">Code Theme</span>
-      <div
-        id="triangle"
-        class="triangle animated bounceInUp"
-        style="display: none;"
-      ></div>
-      <ul class="styles-list animated bounceInUp" id="styles-list" style="display: none;"></ul>
-    </div>
+  <div id="container" style="height: 100%; width: 100%; visibility: hidden;">
+    <header class="header">
+      <div class="title">Wechat Markdown Editor</div>
+      <div id="copy" class="copy" data-clipboard-action="copy" data-clipboard-target="#paper">Copy</div>
 
-    <!-- 渲染样式选择 -->
-    <div class="page-theme">
-      <span class="page-theme-btn" id="page-theme-btn">Page Theme</span>
-      <div
-        id="page-triangle"
-        class="triangle animated bounceInUp"
-        style="display: none;"
-      ></div>
-      <ul class="page-list animated bounceInUp" id="page-list" style="display: none;"></ul>
-    </div>
+      <!-- 渲染的代码样式 -->
+      <div class="code-btn">
+        <span id="code-btn" class="theme-btn">Code Theme</span>
+        <div id="triangle" class="triangle animated bounceInUp" style="display: none;"></div>
+        <ul class="styles-list animated bounceInUp" id="styles-list" style="display: none;"></ul>
+      </div>
 
-    <!-- 编辑器样式选择 -->
-    <div class="editor-theme">
-      <span class="editor-theme-btn" id="editor-theme-btn">Editor Theme</span>
-      <div id="editor-triangle" class="triangle animated bounceInUp" style="display: none;"></div>
-      <ul class="editor-list animated bounceInUp" id="editor-list" style="display: none;"></ul>
-    </div>
-  </header>
+      <!-- 渲染样式选择 -->
+      <div class="page-theme">
+        <span class="page-theme-btn" id="page-theme-btn">Page Theme</span>
+        <div id="page-triangle" class="triangle animated bounceInUp" style="display: none;"></div>
+        <ul class="page-list animated bounceInUp" id="page-list" style="display: none;"></ul>
+      </div>
 
-  <div id="editor" class="editor">
-    <div class="editor-item">
-      <textarea id="textarea" class="textarea">
+      <!-- 编辑器样式选择 -->
+      <div class="editor-theme">
+        <span class="editor-theme-btn" id="editor-theme-btn">Editor Theme</span>
+        <div id="editor-triangle" class="triangle animated bounceInUp" style="display: none;"></div>
+        <ul class="editor-list animated bounceInUp" id="editor-list" style="display: none;"></ul>
+      </div>
+    </header>
+
+    <div id="editor" class="editor">
+      <div class="editor-item">
+        <textarea id="textarea" class="textarea">
 # h1 Heading 8-)
 ## h2 Heading
 ### h3 Heading
@@ -280,14 +272,17 @@ It converts "HTML", but keep intact partial entries like "xxxHTMLyyy" and so on.
 ::: tips
 *here be dragons*
 :::
-      </textarea>
-    </div>
-    <div id="paper-wrap" class="editor-item paper-wrap">
-      <div class="content">
-        <div id="paper" class="paper"></div>
+          </textarea>
+      </div>
+      <div id="paper-wrap" class="editor-item paper-wrap">
+        <div class="content">
+          <div id="paper" class="paper"></div>
+        </div>
       </div>
     </div>
   </div>
+
+
 
   <script src="./js/highlight.min.js"></script>
   <script src="./js/markdown/markdown-it.js"></script>
