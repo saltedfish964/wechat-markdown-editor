@@ -8,15 +8,19 @@ function WechatMarkdownEdit () {
   this.paperEle = this.getElement('#paper');
 
   // scrollAsync 参数
-  this.textareaEleScrollHeight = 0;
+  this.editorScrollHeight = 0;
   this.paperEleScrollHeight = 0;
   this.paperWrapEle = this.getElement('#paper-wrap');
+
+  this.editorScrollEle = null;
 
   // 文档高度
   this.documentHeight = 0;
 
   // initMarkdownIt 参数
   this.md = this.initMarkdownIt();
+
+  this.editor = this.initEditor();
 }
 
 WechatMarkdownEdit.prototype.init = function () {
@@ -31,7 +35,11 @@ WechatMarkdownEdit.prototype.init = function () {
 
   that.initSelect();
 
-  this.copy();
+  that.editor.on('scroll', function (cm) {
+    console.log(cm.display.scroller.scrollTop)
+  })
+
+  that.copy();
 }
 
 // 获取单个 dom
@@ -95,21 +103,37 @@ WechatMarkdownEdit.prototype.initMarkdownIt = function () {
   return md;
 }
 
+// 初始化 CodeMirror
+WechatMarkdownEdit.prototype.initEditor = function () {
+  var that = this;
+
+  var editor = CodeMirror.fromTextArea(that.textareaEle, {
+    lineNumbers: false,
+    lineWrapping: true,
+    styleActiveLine: true,
+    scrollbarStyle: 'null',
+    autofocus: true,
+    theme: '3024-night',
+    mode: 'text/x-markdown',
+  });
+
+  that.editorScrollEle = editor.display.scroller;
+
+  return editor
+}
+
 // 渲染
 WechatMarkdownEdit.prototype.renderMarkdown = function () {
   var that = this;
+
   var mdHtml = that.md.render(that.textareaEle.value);
   that.paperEle.innerHTML = mdHtml;
 
-  that.textareaEle.onkeydown = function (e) {
-    var value = that.md.render(e.target.value);
+  that.editor.on('change', function () {
+    var editorValue = that.editor.getValue();
+    var value = that.md.render(editorValue);
     that.paperEle.innerHTML = value;
-  }
-
-  that.textareaEle.onkeyup = function (e) {
-    var value = that.md.render(e.target.value);
-    that.paperEle.innerHTML = value;
-  }
+  })
 }
 
 // 滚动条同步滚动
@@ -120,35 +144,36 @@ WechatMarkdownEdit.prototype.scrollAsync = function () {
   that.documentHeight = document.documentElement.clientHeight;
 
   // 初始化滚动条高度
-  that.textareaEleScrollHeight = that.textareaEle.scrollHeight - that.documentHeight;
+  that.editorScrollHeight = that.editorScrollEle.scrollHeight - that.documentHeight;
   that.paperEleScrollHeight = that.paperWrapEle.scrollHeight - that.documentHeight;
 
   window.onresize = function () {
-    that.textareaEleScrollHeight = that.textareaEle.scrollHeight - that.documentHeight;
+    that.editorScrollHeight = that.editorScrollEle.scrollHeight - that.documentHeight;
     that.paperEleScrollHeight = that.paperWrapEle.scrollHeight - that.documentHeight;
 
-    that.editorEle.style.height = `${document.documentElement.clientHeight - 54}px`;
+    that.editorScrollEle.style.height = `${document.documentElement.clientHeight - 54}px`;
   }
 
-  that.textareaEle.onmouseenter = function () {
-    that.textareaEleScrollHeight = that.textareaEle.scrollHeight - that.documentHeight;
+  that.editorScrollEle.onmouseenter = function () {
+    console.log('enter')
+    that.editorScrollHeight = that.editorScrollEle.scrollHeight - that.documentHeight;
     that.paperEleScrollHeight = that.paperWrapEle.scrollHeight - that.documentHeight;
 
-    that.textareaEle.onscroll = function () {
-      var textareaEleScrollTop = that.textareaEle.scrollTop;
-      var scale = textareaEleScrollTop / that.textareaEleScrollHeight;
+    that.editorScrollEle.onscroll = function () {
+      var textareaEleScrollTop = that.editorScrollEle.scrollTop;
+      var scale = textareaEleScrollTop / that.editorScrollHeight;
       scale = scale.toFixed(4);
 
       that.paperWrapEle.scrollTop = that.paperEleScrollHeight * scale;
     }
   }
 
-  that.textareaEle.onmouseleave = function () {
-    that.textareaEle.onscroll = null;
+  that.editorScrollEle.onmouseleave = function () {
+    that.editorScrollEle.onscroll = null;
   }
 
   that.paperWrapEle.onmouseenter = function () {
-    that.textareaEleScrollHeight = that.textareaEle.scrollHeight - that.documentHeight;
+    that.editorScrollHeight = that.editorScrollEle.scrollHeight - that.documentHeight;
     that.paperEleScrollHeight = that.paperWrapEle.scrollHeight - that.documentHeight;
 
     that.paperWrapEle.onscroll = function () {
@@ -156,7 +181,7 @@ WechatMarkdownEdit.prototype.scrollAsync = function () {
       var scale = paperEleScrollTop / that.paperEleScrollHeight;
       scale = scale.toFixed(4);
 
-      that.textareaEle.scrollTop = that.textareaEleScrollHeight * scale;
+      that.editorScrollEle.scrollTop = that.editorScrollHeight * scale;
     }
   }
 
@@ -195,10 +220,12 @@ Obj:
   btnEleId:String 点击按钮
   themeObj:Object 样式对象
   cssdir:String CSS 文件夹下对应的文件夹
-  callback:Function 点击按钮结束时的回调函数
+  active:Number 默认选中第几个，0 为第一个，默认为 0
 */
 WechatMarkdownEdit.prototype.selectList = function (obj) {
   var that = this;
+
+  var active = obj.active || 0;
 
   var ListEle = that.getElement(obj.listEleId);
   var triangleEle = that.getElement(obj.triangleEleId);
@@ -206,12 +233,8 @@ WechatMarkdownEdit.prototype.selectList = function (obj) {
   var btnEle = that.getElement(obj.btnEleId);
 
   btnEle.onclick = function () {
-    if (ListEle.style.display === 'none') {
-      ListEle.style.display = 'block';
-      triangleEle.style.display = 'block';
-    }
-
-    obj.callback ? obj.callback() : {};
+    ListEle.style.display = 'block';
+    triangleEle.style.display = 'block';
   }
 
   ListEle.onmouseleave = function () {
@@ -259,12 +282,16 @@ WechatMarkdownEdit.prototype.selectList = function (obj) {
 
       e.target.classList.add('active');
       themeCssEle.setAttribute('href', href);
+
+      if (obj.themeCssEleId === '#editor-theme-css') {
+        that.editor.setOption("theme", e.target.title);
+      }
     }
 
     ListEle.appendChild(li);
   }
 
-  ListEle.getElementsByClassName('code-item')[0].classList.add('active');
+  ListEle.getElementsByClassName('code-item')[active].classList.add('active');
 }
 
 WechatMarkdownEdit.prototype.initSelect = function () {
@@ -277,33 +304,6 @@ WechatMarkdownEdit.prototype.initSelect = function () {
     btnEleId: '#code-btn',
     themeObj: themeObj,
     cssdir: 'styles',
-    callback: function () {
-      var listEle = that.getElement('#page-list');
-      var triangleEle = that.getElement('#page-triangle');
-
-      var tempAnimation = function () {
-        listEle.style.display = 'none';
-        triangleEle.style.display = 'none';
-
-        listEle.classList.add('bounceInUp');
-        listEle.classList.remove('bounceOutDown');
-
-        triangleEle.classList.add('bounceInUp');
-        triangleEle.classList.remove('bounceOutDown');
-
-        listEle.removeEventListener('animationend', tempAnimation, false);
-      }
-
-      if (listEle.style.display === 'block') {
-        listEle.classList.remove('bounceInUp');
-        listEle.classList.add('bounceOutDown');
-
-        triangleEle.classList.remove('bounceInUp');
-        triangleEle.classList.add('bounceOutDown');
-
-        listEle.addEventListener('animationend', tempAnimation, false)
-      }
-    },
   });
 
   that.selectList({
@@ -313,33 +313,16 @@ WechatMarkdownEdit.prototype.initSelect = function () {
     btnEleId: '#page-theme-btn',
     themeObj: pageThemeObj,
     cssdir: 'theme',
-    callback: function () {
-      var listEle = that.getElement('#styles-list');
-      var triangleEle = that.getElement('#triangle');
+  });
 
-      var tempAnimation = function () {
-        listEle.style.display = 'none';
-        triangleEle.style.display = 'none';
-
-        listEle.classList.add('bounceInUp');
-        listEle.classList.remove('bounceOutDown');
-
-        triangleEle.classList.add('bounceInUp');
-        triangleEle.classList.remove('bounceOutDown');
-
-        listEle.removeEventListener('animationend', tempAnimation, false);
-      }
-
-      if (listEle.style.display === 'block') {
-        listEle.classList.remove('bounceInUp');
-        listEle.classList.add('bounceOutDown');
-
-        triangleEle.classList.remove('bounceInUp');
-        triangleEle.classList.add('bounceOutDown');
-
-        listEle.addEventListener('animationend', tempAnimation, false)
-      }
-    },
+  that.selectList({
+    listEleId: '#editor-list',
+    triangleEleId: '#editor-triangle',
+    themeCssEleId: '#editor-theme-css',
+    btnEleId: '#editor-theme-btn',
+    themeObj: editorThemeObj,
+    cssdir: 'codemirror/theme',
+    active: 2,
   });
 }
 

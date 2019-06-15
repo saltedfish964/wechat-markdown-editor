@@ -74,11 +74,12 @@ body {
   height: 100%;
   width: 100%;
   box-sizing: border-box;
-  padding: 1.6rem
+  padding: 1.6rem;
 }
 
 .textarea::-webkit-scrollbar,
 .styles-list::-webkit-scrollbar,
+.editor-list::-webkit-scrollbar,
 .paper-wrap::-webkit-scrollbar {
   width: 5px;
   background: #f1f1f1;
@@ -87,6 +88,7 @@ body {
 
 .textarea::-webkit-scrollbar-track,
 .styles-list::-webkit-scrollbar-track,
+.editor-list::-webkit-scrollbar-track,
 .paper-wrap::-webkit-scrollbar-track {
   width: 5px;
   border-radius: 2.5px;
@@ -94,6 +96,7 @@ body {
 
 .textarea::-webkit-scrollbar-thumb,
 .styles-list::-webkit-scrollbar-thumb,
+.editor-list::-webkit-scrollbar-thumb,
 .paper-wrap::-webkit-scrollbar-thumb {
   background: #1890ff;
   border-radius: 2.5px;
@@ -159,7 +162,7 @@ body {
 
 .styles-list li,
 .page-list li,
-.editor li {
+.editor-list li {
   list-style: none;
   text-align: center;
   height: 30px;
@@ -174,7 +177,7 @@ body {
 
 .styles-list li:hover,
 .page-list li:hover,
-.editor li:hover {
+.editor-list li:hover {
   background: #40a9ff;
   cursor: pointer;
   color: #ffffff;
@@ -182,7 +185,7 @@ body {
 
 .active {
   color: #930077;
-  border-bottom: 4px solid #930077;
+  border-bottom: 2px solid #930077;
 }
 
 .theme-btn,

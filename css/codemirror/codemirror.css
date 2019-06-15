@@ -6,6 +6,25 @@
   height: 300px;
   color: black;
   direction: ltr;
+  height: 100%;
+  box-sizing: border-box;
+  font-size: 20px;
+}
+
+.CodeMirror-vscrollbar::-webkit-scrollbar {
+  width: 5px;
+  background: #f1f1f1;
+  border-radius: 2.5px;
+}
+
+.CodeMirror-vscrollbar::-webkit-scrollbar-track {
+  width: 5px;
+  border-radius: 2.5px;
+}
+
+.CodeMirror-vscrollbar::-webkit-scrollbar-thumb {
+  background: #1890ff;
+  border-radius: 2.5px;
 }
 
 /* PADDING */
