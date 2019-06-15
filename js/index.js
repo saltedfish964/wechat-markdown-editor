@@ -35,10 +35,6 @@ WechatMarkdownEdit.prototype.init = function () {
 
   that.initSelect();
 
-  that.editor.on('scroll', function (cm) {
-    console.log(cm.display.scroller.scrollTop)
-  })
-
   that.copy();
 }
 
@@ -155,7 +151,6 @@ WechatMarkdownEdit.prototype.scrollAsync = function () {
   }
 
   that.editorScrollEle.onmouseenter = function () {
-    console.log('enter')
     that.editorScrollHeight = that.editorScrollEle.scrollHeight - that.documentHeight;
     that.paperEleScrollHeight = that.paperWrapEle.scrollHeight - that.documentHeight;
 
