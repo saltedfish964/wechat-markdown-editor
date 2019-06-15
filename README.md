@@ -26,6 +26,14 @@
 
 Contributions, issues and feature requests are welcome !<br />Feel free to check [issues page](https://github.com/didadi599/wechat-markdown-editor/issues).
 
+## Get Start
+
+```shell
+git clone git@github.com:didadi599/wechat-markdown-editor.git
+
+# open index.html
+```
+
 ## Show your support
 
 Give a ⭐️ if this project helped you !
