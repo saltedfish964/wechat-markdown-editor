@@ -139,7 +139,7 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  display: none;
+  /* display: none; */
 }
 
 .triangle {
@@ -152,7 +152,7 @@ body {
   position: absolute;
   bottom: -11px;
   left: 40px;
-  display: none;
+  /* display: none; */
 }
 
 .styles-list li,

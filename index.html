@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="shortcut icon" href="favicon.png" type="image/png">
+  <link rel="stylesheet" href="./css/animation.css">
   <link rel="stylesheet" href="./css/normalize.css">
   <link id="page-theme-css" rel="stylesheet" href="./css/theme/default.css">
   <link rel="stylesheet" href="./css/index.css">
@@ -30,16 +31,29 @@
 <body>
   <header class="header">
     <div class="title">Wechat Markdown Editor</div>
-    <div id="copy" class="copy" data-clipboard-action="copy" data-clipboard-target="#paper">Copy</div>
+    <div
+      id="copy"
+      class="copy"
+      data-clipboard-action="copy"
+      data-clipboard-target="#paper"
+    >Copy</div>
     <div class="code-btn">
       <span id="code-btn" class="theme-btn">Code Theme</span>
-      <div id="triangle" class="triangle"></div>
-      <ul class="styles-list" id="styles-list"></ul>
+      <div
+        id="triangle"
+        class="triangle animated bounceInUp"
+        style="display: none;"
+      ></div>
+      <ul class="styles-list animated bounceInUp" id="styles-list" style="display: none;"></ul>
     </div>
     <div class="page-theme">
       <span class="page-theme-btn" id="page-theme-btn">Page Theme</span>
-      <div id="page-triangle" class="triangle"></div>
-      <ul class="page-list" id="page-list"></ul>
+      <div
+        id="page-triangle"
+        class="triangle animated bounceInUp"
+        style="display: none;"
+      ></div>
+      <ul class="page-list animated bounceInUp" id="page-list" style="display: none;"></ul>
     </div>
   </header>
 

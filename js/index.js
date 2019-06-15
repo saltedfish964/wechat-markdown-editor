@@ -20,30 +20,16 @@ function WechatMarkdownEdit () {
 }
 
 WechatMarkdownEdit.prototype.init = function () {
+  var that = this;
+
   // 初始化整个页面的高度
-  this.editorEle.style.height = `${document.documentElement.clientHeight - 54}px`;
+  that.editorEle.style.height = `${document.documentElement.clientHeight - 54}px`;
 
-  this.renderMarkdown();
+  that.renderMarkdown();
 
-  this.scrollAsync();
+  that.scrollAsync();
 
-  this.selectList({
-    listEleId: '#styles-list',
-    triangleEleId: '#triangle',
-    themeCssEleId: '#theme-css',
-    btnEleId: '#code-btn',
-    themeObj: themeObj,
-    cssdir: 'styles',
-  });
-
-  this.selectList({
-    listEleId: '#page-list',
-    triangleEleId: '#page-triangle',
-    themeCssEleId: '#page-theme-css',
-    btnEleId: '#page-theme-btn',
-    themeObj: pageThemeObj,
-    cssdir: 'theme',
-  });
+  that.initSelect();
 
   this.copy();
 }
@@ -137,8 +123,6 @@ WechatMarkdownEdit.prototype.scrollAsync = function () {
   that.textareaEleScrollHeight = that.textareaEle.scrollHeight - that.documentHeight;
   that.paperEleScrollHeight = that.paperWrapEle.scrollHeight - that.documentHeight;
 
-  console.log(that.textareaEleScrollHeight, that.paperEleScrollHeight)
-
   window.onresize = function () {
     that.textareaEleScrollHeight = that.textareaEle.scrollHeight - that.documentHeight;
     that.paperEleScrollHeight = that.paperWrapEle.scrollHeight - that.documentHeight;
@@ -211,6 +195,7 @@ Obj:
   btnEleId:String 点击按钮
   themeObj:Object 样式对象
   cssdir:String CSS 文件夹下对应的文件夹
+  callback:Function 点击按钮结束时的回调函数
 */
 WechatMarkdownEdit.prototype.selectList = function (obj) {
   var that = this;
@@ -221,13 +206,37 @@ WechatMarkdownEdit.prototype.selectList = function (obj) {
   var btnEle = that.getElement(obj.btnEleId);
 
   btnEle.onclick = function () {
-    ListEle.style.display = 'block';
-    triangleEle.style.display = 'block';
+    if (ListEle.style.display === 'none') {
+      ListEle.style.display = 'block';
+      triangleEle.style.display = 'block';
+    }
+
+    obj.callback ? obj.callback() : {};
   }
 
   ListEle.onmouseleave = function () {
-    ListEle.style.display = 'none';
-    triangleEle.style.display = 'none';
+    ListEle.classList.remove('bounceInUp');
+    ListEle.classList.add('bounceOutDown');
+
+    triangleEle.classList.remove('bounceInUp');
+    triangleEle.classList.add('bounceOutDown');
+
+    var tempAnimation = function () {
+      ListEle.style.display = 'none';
+      triangleEle.style.display = 'none';
+
+      ListEle.classList.add('bounceInUp');
+      ListEle.classList.remove('bounceOutDown');
+
+      triangleEle.classList.add('bounceInUp');
+      triangleEle.classList.remove('bounceOutDown');
+
+      ListEle.removeEventListener('animationend', tempAnimation, false);
+    }
+
+    if (ListEle.style.display === 'block') {
+      ListEle.addEventListener('animationend', tempAnimation, false)
+    }
   }
 
   for (var item in obj.themeObj) {
@@ -250,14 +259,88 @@ WechatMarkdownEdit.prototype.selectList = function (obj) {
 
       e.target.classList.add('active');
       themeCssEle.setAttribute('href', href);
-
-      console.log(that.textareaEleScrollHeight, that.paperEleScrollHeight)
     }
 
     ListEle.appendChild(li);
   }
 
   ListEle.getElementsByClassName('code-item')[0].classList.add('active');
+}
+
+WechatMarkdownEdit.prototype.initSelect = function () {
+  var that = this;
+
+  that.selectList({
+    listEleId: '#styles-list',
+    triangleEleId: '#triangle',
+    themeCssEleId: '#theme-css',
+    btnEleId: '#code-btn',
+    themeObj: themeObj,
+    cssdir: 'styles',
+    callback: function () {
+      var listEle = that.getElement('#page-list');
+      var triangleEle = that.getElement('#page-triangle');
+
+      var tempAnimation = function () {
+        listEle.style.display = 'none';
+        triangleEle.style.display = 'none';
+
+        listEle.classList.add('bounceInUp');
+        listEle.classList.remove('bounceOutDown');
+
+        triangleEle.classList.add('bounceInUp');
+        triangleEle.classList.remove('bounceOutDown');
+
+        listEle.removeEventListener('animationend', tempAnimation, false);
+      }
+
+      if (listEle.style.display === 'block') {
+        listEle.classList.remove('bounceInUp');
+        listEle.classList.add('bounceOutDown');
+
+        triangleEle.classList.remove('bounceInUp');
+        triangleEle.classList.add('bounceOutDown');
+
+        listEle.addEventListener('animationend', tempAnimation, false)
+      }
+    },
+  });
+
+  that.selectList({
+    listEleId: '#page-list',
+    triangleEleId: '#page-triangle',
+    themeCssEleId: '#page-theme-css',
+    btnEleId: '#page-theme-btn',
+    themeObj: pageThemeObj,
+    cssdir: 'theme',
+    callback: function () {
+      var listEle = that.getElement('#styles-list');
+      var triangleEle = that.getElement('#triangle');
+
+      var tempAnimation = function () {
+        listEle.style.display = 'none';
+        triangleEle.style.display = 'none';
+
+        listEle.classList.add('bounceInUp');
+        listEle.classList.remove('bounceOutDown');
+
+        triangleEle.classList.add('bounceInUp');
+        triangleEle.classList.remove('bounceOutDown');
+
+        listEle.removeEventListener('animationend', tempAnimation, false);
+      }
+
+      if (listEle.style.display === 'block') {
+        listEle.classList.remove('bounceInUp');
+        listEle.classList.add('bounceOutDown');
+
+        triangleEle.classList.remove('bounceInUp');
+        triangleEle.classList.add('bounceOutDown');
+
+        listEle.addEventListener('animationend', tempAnimation, false)
+      }
+    },
+  });
 }
 
 window.onload = function () {
