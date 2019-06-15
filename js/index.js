@@ -324,3 +324,7 @@ WechatMarkdownEdit.prototype.initSelect = function () {
 window.onload = function () {
   new WechatMarkdownEdit().init();
 }
+
+window.addEventListener('load', function () {
+  this.document.getElementsByTagName('body')[0].style.visibility = 'visible';
+})
