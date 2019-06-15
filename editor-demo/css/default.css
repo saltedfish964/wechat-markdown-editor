@@ -1,0 +1,20 @@
+.paper h1 {
+  background: #f9ed69;
+  margin-bottom: 15px;
+  margin-top: 0;
+}
+.paper h2 {
+  background: #f08a5d;
+  margin-bottom: 15px;
+  margin-top: 0;
+}
+.paper h3 {
+  background: #b83b5e;
+  margin-bottom: 15px;
+  margin-top: 0;
+}
+.paper h4 {
+  background: #6a2c70;
+  margin-bottom: 15px;
+  margin-top: 0;
+}

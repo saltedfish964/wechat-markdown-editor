@@ -1,0 +1,18 @@
+.wrap {
+  display: flex;
+}
+
+.textarea {
+  resize: none;
+  height: 300px;
+  width: 200px;
+  margin-right: 20px;
+  flex: 0 200px;
+}
+
+.paper {
+  word-break: break-all;
+  width: 500px;
+  height: 600px;
+  background: #eeeeee;
+}
