@@ -20,7 +20,8 @@
   background: 0 0
 }
 .paper p {
-  margin: 10px 0
+  margin: 10px 0;
+  line-height: 1.7
 }
 .paper h1 {
   font-size: 36px
