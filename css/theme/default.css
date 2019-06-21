@@ -1,3 +1,8 @@
+/*
+  所有定制样式写在 .paper 选择器下
+  .paper 类是包裹元素
+  设置 code 标签需要用到 .paper .code-inline
+*/
 .paper * {
   box-sizing: border-box
 }

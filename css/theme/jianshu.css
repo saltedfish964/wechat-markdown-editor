@@ -1,0 +1,172 @@
+.paper * {
+  box-sizing: border-box;
+  font-size: 16px;
+  color: #333;
+  font-family: -apple-system,SF UI Text,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei,WenQuanYi Micro Hei,sans-serif
+}
+.paper h1,
+.paper h2,
+.paper h3,
+.paper h4,
+.paper h5,
+.paper h6 {
+  text-rendering: optimizelegibility;
+  line-height: 1.7;
+  margin: 0 0 15px;
+  font-weight: 700;
+  color: rgba(0,0,0,.85)
+}
+.paper h1 {
+  font-size: 26px
+}
+.paper h2 {
+  font-size: 24px
+}
+.paper h3 {
+  font-size: 22px
+}
+.paper h4 {
+  font-size: 20px
+}
+.paper h5 {
+  font-size: 18px
+}
+.paper h6 {
+  font-size: 16px
+}
+.paper hr {
+  margin: 0 0 20px;
+  border: 0;
+  border-top: 1px solid #d9d9d9
+}
+.paper p {
+  margin: 0 0 25px;
+  word-break: break-word
+}
+.paper b,
+.paper strong {
+  font-weight: bolder
+}
+.paper blockquote {
+  padding: 20px;
+  background-color: #f2f2f2;
+  border-left: 6px solid #b3b3b3;
+  word-break: break-word;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 30px;
+  margin: 0 0 20px
+}
+.paper ol,
+.paper ul {
+  padding-left: 0;
+  word-break: break-word;
+  margin: -5px 0 20px 20px
+}
+.paper ol li,
+.paper ul li {
+  line-height: 30px
+}
+.paper ul {
+  list-style-type: disc
+}
+.paper ol {
+  list-style-type: decimal
+}
+.paper .code-inline {
+  padding: 2px 4px;
+  background-color: #f6f6f6;
+  vertical-align: middle;
+  border: none;
+  color: #c7254e;
+  font-size: 12px;
+  white-space: pre-wrap
+}
+.paper .code-block {
+  word-wrap: normal;
+  word-break: break-all;
+  white-space: pre;
+  overflow: auto;
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid #d9d9d9;
+  border-radius: 0;
+  line-height: 20px;
+  background-color: #282c34
+}
+.paper .code-block code {
+  color: #abb2bf
+}
+.paper table {
+  width: 100%;
+  margin-bottom: 20px;
+  border: 1px solid #d9d9d9;
+  border-collapse: collapse;
+  border-left: none;
+  word-break: normal
+}
+.paper table td,
+.paper table th {
+  padding: 8px;
+  border: 1px solid #d9d9d9;
+  line-height: 20px
+}
+.paper table th {
+  font-weight: 700;
+  vertical-align: middle;
+  text-align: inherit
+}
+.paper table tr:nth-of-type(2n) {
+  background-color: hsla(0,0%,71%,.1)
+}
+.paper a,
+.paper a:hover {
+  color: #3194d0;
+  background-color: transparent;
+  text-decoration: none;
+  outline: 0;
+  cursor: pointer;
+  transition: color .3s
+}
+.paper img {
+  max-width: 100%;
+  width: auto;
+  height: auto;
+  vertical-align: middle;
+  border: 0
+}
+.paper sub,
+.paper sup {
+  position: relative;
+  font-size: 75%;
+  line-height: 0;
+  vertical-align: baseline
+}
+.paper sup {
+  top: -.5em
+}
+.paper .tips {
+  background-color: #f3f5f7;
+  border-color: #42b983;
+  padding: .1rem 1.5rem;
+  border-left-width: .5rem;
+  border-left-style: solid;
+  margin: 1rem 0
+}
+.paper .tips p {
+  margin: 10px 0;
+  line-height: 1.7
+}
+.paper .tips .tips-title {
+  font-weight: 600;
+  margin-bottom: -.4rem
+}
+.paper .footnotes {
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  -moz-column-count: 2;
+  -webkit-column-count: 2;
+  column-count: 2
+}
+.paper .footnotes-list {
+  padding-left: 2em
+}
