@@ -9,6 +9,7 @@ body {
 @media (min-width:1440px) {
   .title {
     flex: 0 0 65%;
+    font-size: 2.4rem;
   }
 }
 @media (min-width:1025px) and (max-width:1439px) {
@@ -31,7 +32,7 @@ body {
   }
   .title {
     flex: 0 0 80%;
-    font-size: 24px;
+    font-size: 19px;
   }
 }
 .loading-wrap {
