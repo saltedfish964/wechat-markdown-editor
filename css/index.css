@@ -1,10 +1,38 @@
 html {
-  font-size: 62.5%;
+  font-size: 62.5%
 }
 body {
   font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
   font-size: 1.6rem;
-  overflow: hidden;
+  overflow: hidden
+}
+@media (min-width:1440px) {
+  .title {
+    flex: 0 0 65%;
+  }
+}
+@media (min-width:1025px) and (max-width:1439px) {
+  .title {
+    flex: 0 0 50%;
+    font-size: 2.4rem;
+  }
+}
+@media (min-width:768px) and (max-width:1024px) {
+  .title {
+    flex: 0 0 35%;
+    font-size: 19px;
+  }
+}
+@media (max-width:767px) {
+  .code-btn,
+  .editor-theme,
+  .page-theme {
+    display: none
+  }
+  .title {
+    flex: 0 0 80%;
+    font-size: 24px;
+  }
 }
 .loading-wrap {
   position: fixed;
@@ -13,7 +41,7 @@ body {
   left: 0;
   right: 0;
   background: #090821;
-  z-index: 999;
+  z-index: 999
 }
 .loading {
   position: relative;
@@ -23,7 +51,7 @@ body {
   overflow: hidden;
   animation: spin 3s ease infinite;
   left: 50%;
-  top: 45%;
+  top: 45%
 }
 .loading::before {
   content: '';
@@ -32,25 +60,24 @@ body {
   left: -3px;
   width: 40px;
   height: 40px;
-  background-color: hsla(185, 100%, 62%, 0.75);
+  background-color: hsla(185,100%,62%,.75);
   transform-origin: center bottom;
   transform: scaleY(1);
-  animation: fill 3s linear infinite;
+  animation: fill 3s linear infinite
 }
 @keyframes spin {
-  50%,
-  100% {
-    transform: rotate(360deg);
+  100%,
+  50% {
+    transform: rotate(360deg)
   }
 }
-
 @keyframes fill {
   25%,
   50% {
-    transform: scaleY(0);
+    transform: scaleY(0)
   }
   100% {
-    transform: scaleY(1);
+    transform: scaleY(1)
   }
 }
 .header {
@@ -59,30 +86,28 @@ body {
   border-bottom: 1px solid #eee;
   display: flex;
   align-items: center;
-  background: #cbf1f5;
+  background: #cbf1f5
 }
 .title {
   box-sizing: border-box;
   padding: 0 2rem;
-  font-size: 2.4rem;
   font-weight: 500;
   line-height: 5.4rem;
-  flex: 0 66%;
   color: #3f72af;
-  cursor: default;
+  cursor: default
 }
 .copy {
   z-index: 1;
   position: relative;
   font-size: inherit;
   font-family: inherit;
-  color: white;
-  padding: 0.5em 1em;
-  outline: none;
+  color: #fff;
+  padding: .5em 1em;
+  outline: 0;
   border: none;
   background-color: #1890ff;
   border-radius: 5px;
-  margin-right: 4rem;
+  margin-right: 4rem
 }
 .copy::before {
   content: '';
@@ -95,24 +120,24 @@ body {
   border: 4px solid #1890ff;
   transform-origin: center;
   border-radius: 5px;
-  transform: scale(1);
+  transform: scale(1)
 }
 .copy:hover {
   cursor: pointer;
-  background: #40a9ff;
+  background: #40a9ff
 }
 .copy:hover::before {
-  transition: all 0.75s ease-in-out;
+  transition: all .75s ease-in-out;
   transform-origin: center;
   transform: scale(1.75);
-  opacity: 0;
+  opacity: 0
 }
 .editor {
   display: flex
 }
 .editor-item {
   flex: 0 0 50%;
-  overflow: hidden;
+  overflow: hidden
 }
 .textarea {
   resize: none;
@@ -121,135 +146,118 @@ body {
   height: 100%;
   width: 100%;
   box-sizing: border-box;
-  padding: 1.6rem;
+  padding: 1.6rem
 }
-
-.textarea::-webkit-scrollbar,
-.styles-list::-webkit-scrollbar,
 .editor-list::-webkit-scrollbar,
-.paper-wrap::-webkit-scrollbar {
+.paper-wrap::-webkit-scrollbar,
+.styles-list::-webkit-scrollbar,
+.textarea::-webkit-scrollbar {
   width: 5px;
   background: #f1f1f1;
-  border-radius: 2.5px;
+  border-radius: 2.5px
 }
-
-.textarea::-webkit-scrollbar-track,
-.styles-list::-webkit-scrollbar-track,
 .editor-list::-webkit-scrollbar-track,
-.paper-wrap::-webkit-scrollbar-track {
+.paper-wrap::-webkit-scrollbar-track,
+.styles-list::-webkit-scrollbar-track,
+.textarea::-webkit-scrollbar-track {
   width: 5px;
-  border-radius: 2.5px;
+  border-radius: 2.5px
 }
-
-.textarea::-webkit-scrollbar-thumb,
-.styles-list::-webkit-scrollbar-thumb,
 .editor-list::-webkit-scrollbar-thumb,
-.paper-wrap::-webkit-scrollbar-thumb {
+.paper-wrap::-webkit-scrollbar-thumb,
+.styles-list::-webkit-scrollbar-thumb,
+.textarea::-webkit-scrollbar-thumb {
   background: #1890ff;
-  border-radius: 2.5px;
+  border-radius: 2.5px
 }
-
 .paper-wrap {
   overflow-y: auto;
-  box-sizing: border-box;
+  box-sizing: border-box
 }
-
 .content {
   width: 375px;
   box-shadow: 0 10px 40px -10px rgba(0,64,128,.2);
-  margin: 3rem auto;
+  margin: 3rem auto
 }
-
 .paper {
   width: 100%;
   box-sizing: border-box;
   word-break: break-all;
   overflow: hidden;
-  padding: 1.6rem;
+  padding: 1.6rem
 }
-
 .code-btn,
-.page-theme,
-.editor-theme {
+.editor-theme,
+.page-theme {
   position: relative;
   word-break: normal;
-  margin-right: 4rem;
+  margin-right: 4rem
 }
-
-.styles-list,
+.editor-list,
 .page-list,
-.editor-list {
+.styles-list {
   overflow-y: auto;
   position: absolute;
   top: 29px;
   left: 0;
   max-height: 200px;
   width: 90px;
-  background: #ffffff;
+  background: #fff;
   border-radius: 5px;
   box-shadow: 0 10px 40px -10px rgba(0,64,128,.2);
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  /* display: none; */
+  box-sizing: border-box
 }
-
 .triangle {
   width: 0;
   height: 0;
   border-top: 5px solid transparent;
-  border-bottom: 5px solid #ffffff;
+  border-bottom: 5px solid #fff;
   border-left: 5px solid transparent;
   border-right: 5px solid transparent;
   position: absolute;
   bottom: -11px;
-  left: 40px;
-  /* display: none; */
+  left: 40px
 }
-
-.styles-list li,
+.editor-list li,
 .page-list li,
-.editor-list li {
+.styles-list li {
   list-style: none;
   text-align: center;
   height: 30px;
   line-height: 30px;
   width: 100%;
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   box-sizing: border-box;
-  padding: 0 5px;
+  padding: 0 5px
 }
-
-.styles-list li:hover,
+.editor-list li:hover,
 .page-list li:hover,
-.editor-list li:hover {
+.styles-list li:hover {
   background: #40a9ff;
   cursor: pointer;
-  color: #ffffff;
+  color: #fff
 }
-
 .active {
   color: #930077;
-  border-bottom: 2px solid #930077;
+  border-bottom: 2px solid #930077
 }
-
-.theme-btn,
+.editor-theme-btn,
 .page-theme-btn,
-.editor-theme-btn {
-  position: relative;
+.theme-btn {
+  position: relative
 }
-
-.theme-btn,
+.editor-theme-btn,
 .page-theme-btn,
-.editor-theme-btn {
-  cursor: pointer;
+.theme-btn {
+  cursor: pointer
 }
-
-.theme-btn::before,
+.editor-theme-btn::before,
 .page-theme-btn::before,
-.editor-theme-btn::before {
+.theme-btn::before {
   content: '';
   position: absolute;
   bottom: -4px;
@@ -259,12 +267,11 @@ body {
   background-color: #930077;
   transform-origin: bottom right;
   transform: scaleX(0);
-  transition: transform 0.5s ease;
+  transition: transform .5s ease
 }
-
-.theme-btn:hover::before,
+.editor-theme-btn:hover::before,
 .page-theme-btn:hover::before,
-.editor-theme-btn:hover::before {
+.theme-btn:hover::before {
   transform-origin: bottom left;
-  transform: scaleX(1);
+  transform: scaleX(1)
 }
