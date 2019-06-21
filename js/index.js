@@ -147,7 +147,7 @@ WechatMarkdownEdit.prototype.scrollAsync = function () {
     that.editorScrollHeight = that.editorScrollEle.scrollHeight - that.documentHeight;
     that.paperEleScrollHeight = that.paperWrapEle.scrollHeight - that.documentHeight;
 
-    that.editorScrollEle.style.height = `${document.documentElement.clientHeight - 54}px`;
+    that.editorEle.style.height = `${document.documentElement.clientHeight - 54}px`;
   }
 
   that.editorScrollEle.onmouseenter = function () {
