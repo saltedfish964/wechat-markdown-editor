@@ -70,8 +70,8 @@ body {
   border: 3px solid #3cefff;
   overflow: hidden;
   animation: spin 3s ease infinite;
-  left: 50%;
-  top: 45%
+  left: calc(50% - 20px);
+  top: calc(50% - 20px);
 }
 .loading::before {
   content: '';
