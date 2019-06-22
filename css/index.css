@@ -24,6 +24,13 @@ body {
     font-size: 19px;
   }
 }
+@media (min-width:768px) {
+  .content {
+    width: 375px;
+    box-shadow: 0 10px 40px -10px rgba(0,64,128,.2);
+    margin: 3rem auto
+  }
+}
 @media (max-width:767px) {
   .code-btn,
   .editor-theme,
@@ -33,6 +40,18 @@ body {
   .title {
     flex: 0 0 80%;
     font-size: 19px;
+  }
+  .editor {
+    flex-direction: column;
+  }
+  .content {
+    width: 100%;
+  }
+}
+@media (max-width:320px) {
+  .title {
+    flex: 0 0 75%;
+    font-size: 16px;
   }
 }
 .loading-wrap {
@@ -174,11 +193,6 @@ body {
 .paper-wrap {
   overflow-y: auto;
   box-sizing: border-box
-}
-.content {
-  width: 375px;
-  box-shadow: 0 10px 40px -10px rgba(0,64,128,.2);
-  margin: 3rem auto
 }
 .paper {
   width: 100%;
