@@ -8,23 +8,48 @@ body {
 }
 @media (min-width:1440px) {
   .title {
-    flex: 0 0 65%;
-    font-size: 2.4rem;
+    flex: 0 0 53%;
+    font-size: 2.4rem
+  }
+  .github-wrap {
+    height: 100%;
+    overflow: hidden;
+    width: 12rem
+  }
+  .github {
+    background: #333;
+    color: #fff;
+    height: 3rem;
+    line-height: 3rem;
+    transform: translateY(-50%) rotateZ(45deg);
+    position: relative;
+    top: 50%;
+    width: 12rem;
+    text-align: center
+  }
+  .github-text {
+    text-decoration: none;
+    color: #fff
+  }
+}
+@media (max-width: 1439px) {
+  .github-wrap {
+    display: none;
   }
 }
 @media (min-width:1025px) and (max-width:1439px) {
   .title {
-    flex: 0 0 50%;
-    font-size: 2.4rem;
+    flex: 0 0 48%;
+    font-size: 2.4rem
   }
 }
 @media (min-width:768px) and (max-width:1024px) {
   .title {
-    flex: 0 0 35%;
-    font-size: 19px;
+    flex: 0 0 30%;
+    font-size: 16px
   }
 }
-@media (min-width:768px) {
+@media (min-width:850px) {
   .content {
     width: 375px;
     box-shadow: 0 10px 40px -10px rgba(0,64,128,.2);
@@ -39,19 +64,19 @@ body {
   }
   .title {
     flex: 0 0 80%;
-    font-size: 19px;
+    font-size: 19px
   }
   .editor {
-    flex-direction: column;
+    flex-direction: column
   }
   .content {
-    width: 100%;
+    width: 100%
   }
 }
 @media (max-width:320px) {
   .title {
     flex: 0 0 75%;
-    font-size: 16px;
+    font-size: 16px
   }
 }
 .loading-wrap {
@@ -71,7 +96,7 @@ body {
   overflow: hidden;
   animation: spin 3s ease infinite;
   left: calc(50% - 20px);
-  top: calc(50% - 20px);
+  top: calc(50% - 20px)
 }
 .loading::before {
   content: '';
@@ -106,7 +131,8 @@ body {
   border-bottom: 1px solid #eee;
   display: flex;
   align-items: center;
-  background: #cbf1f5
+  background: #cbf1f5;
+  justify-content: space-between
 }
 .title {
   box-sizing: border-box;
@@ -198,7 +224,7 @@ body {
   width: 100%;
   box-sizing: border-box;
   word-break: break-all;
-  overflow: hidden;
+  overflow: hidden
 }
 .code-btn,
 .editor-theme,
