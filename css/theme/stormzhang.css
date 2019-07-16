@@ -1,0 +1,39 @@
+.paper * {
+  font-family: -apple-system-font,BlinkMacSystemFont,"Helvetica Neue","PingFang SC","Hiragino Sans GB","Microsoft YaHei UI","Microsoft YaHei",Arial,sans-serif;
+  color: #333
+}
+.paper p {
+  margin-bottom: 30px;
+  text-size-adjust: 100%;
+  color: #4d4f53;
+  font-family: "Microsoft Yahei",微软雅黑,"STHeiti Light",华文细黑,SimSun,宋体,Arial,sans-serif;
+  font-size: 17px;
+  letter-spacing: 2px;
+  text-align: start;
+  white-space: normal;
+  margin-left: 1em;
+  margin-right: 1em;
+  line-height: 1.75em;
+  margin-top: 0
+}
+.paper hr {
+  margin: 1em 0;
+  padding: 0;
+  white-space: normal;
+  background-color: #fff;
+  border-right-width: 0;
+  border-bottom-width: 0;
+  border-left-width: 0;
+  border-top-style: solid;
+  border-top-color: #eaeaea;
+  height: 1px;
+  color: #333;
+  font-size: 15px
+}
+.paper img {
+  max-width: 90%;
+  width: auto;
+  height: auto;
+  vertical-align: middle;
+  border: 0
+}

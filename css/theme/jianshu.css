@@ -1,3 +1,6 @@
+.paper {
+  padding: 1.6rem
+}
 .paper * {
   box-sizing: border-box;
   font-size: 16px;

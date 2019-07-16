@@ -53,6 +53,8 @@ WechatMarkdownEdit.prototype.initMarkdownIt = function () {
   var md = window.markdownit({
     typographer: true,
 
+    breaks: true,
+
     highlight: function (str, lang) {
       if (lang && hljs.getLanguage(lang)) {
         try {
@@ -217,7 +219,7 @@ Obj:
   cssdir:String CSS 文件夹下对应的文件夹
   active:Number 默认选中第几个，0 为第一个，默认为 0
 */
-WechatMarkdownEdit.prototype.selectList = function (obj) {
+WechatMarkdownEdit.prototype.selectList = function (obj, callback) {
   var that = this;
 
   var active = obj.active || 0;
@@ -281,6 +283,10 @@ WechatMarkdownEdit.prototype.selectList = function (obj) {
       if (obj.themeCssEleId === '#editor-theme-css') {
         that.editor.setOption("theme", e.target.title);
       }
+
+      if (typeof callback === 'function') {
+        callback(e);
+      }
     }
 
     ListEle.appendChild(li);
@@ -309,6 +315,12 @@ WechatMarkdownEdit.prototype.initSelect = function () {
     btnEleId: '#page-theme-btn',
     themeObj: pageThemeObj,
     cssdir: 'theme',
+  }, function (e) {
+    if (e.target.title === 'stormzhang') {
+      that.editor.setValue(themeText);
+    } else {
+      that.editor.setValue(themeDefaultText);
+    }
   });
 
   that.selectList({

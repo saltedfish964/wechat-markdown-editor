@@ -3,6 +3,9 @@
   .paper 类是包裹元素
   设置 code 标签需要用到 .paper .code-inline
 */
+.paper {
+  padding: 1.6rem
+}
 .paper * {
   box-sizing: border-box
 }
