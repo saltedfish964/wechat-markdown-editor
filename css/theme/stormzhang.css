@@ -37,3 +37,27 @@
   vertical-align: middle;
   border: 0
 }
+.paper .time {
+  margin-left: 1em;
+  margin-right: 1em;
+  line-height: 22.39px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 15px 20px 15px 45px;
+  outline: 0px;
+  border-width: 0px;
+  border-style: initial;
+  border-color: currentcolor;
+  color: rgb(62, 62, 62);
+  vertical-align: baseline;
+  background-image: url(https://mmbiz.qpic.cn/mmbiz_jpg/159icnNTXChO0HKpCjo4FklcH7pZmqqE53xGHlZgYUcT7eHWkXmPDgWFPh4Bh6hvfylUZxW7Q1QibichIjlqhPpDg/640?wx_fmt=jpeg);
+  background-color: rgb(241, 241, 241);
+  background-position: 1% 5px;
+  background-repeat: no-repeat;
+  box-sizing: border-box;
+}
+.paper .time p {
+  font-size: 14px;
+  margin: 0;
+  color: #0C8918;
+}

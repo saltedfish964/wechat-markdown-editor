@@ -82,6 +82,18 @@ WechatMarkdownEdit.prototype.initMarkdownIt = function () {
     }
   });
 
+  md.use(window.markdownitContainer, 'time', {
+    render: function (tokens, idx) {
+      var m = tokens[idx].info.trim().match(/^time(.*)$/);
+
+      if (tokens[idx].nesting === 1) {
+        return '<section class="time">' + md.utils.escapeHtml(m[1]);
+      } else {
+        return '</section>\n';
+      }
+    }
+  });
+
   md.use(window.markdownitEmoji);
 
   md.use(window.markdownitSup);
