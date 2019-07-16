@@ -14,7 +14,8 @@ body {
   .github-wrap {
     height: 100%;
     overflow: hidden;
-    width: 12rem
+    width: 12rem;
+    flex: 1;
   }
   .github {
     background: #333;
@@ -57,13 +58,8 @@ body {
   }
 }
 @media (max-width:767px) {
-  .code-btn,
-  .editor-theme,
-  .page-theme {
-    display: none
-  }
   .title {
-    flex: 0 0 80%;
+    flex: 0 0 70%;
     font-size: 19px
   }
   .editor {
@@ -142,18 +138,23 @@ body {
   color: #3f72af;
   cursor: default
 }
+.copy-wrap {
+  flex: 1;
+  box-sizing: border-box;
+  padding-right: 1rem;
+}
 .copy {
-  z-index: 1;
+  z-index: 0;
   position: relative;
   font-size: inherit;
   font-family: inherit;
   color: #fff;
-  padding: .5em 1em;
+  padding: 0.5em 1em;
   outline: 0;
   border: none;
   background-color: #1890ff;
   border-radius: 5px;
-  margin-right: 4rem
+  width: 4rem;
 }
 .copy::before {
   content: '';
@@ -194,25 +195,16 @@ body {
   box-sizing: border-box;
   padding: 1.6rem
 }
-.editor-list::-webkit-scrollbar,
-.paper-wrap::-webkit-scrollbar,
-.styles-list::-webkit-scrollbar,
-.textarea::-webkit-scrollbar {
+.paper-wrap::-webkit-scrollbar {
   width: 5px;
   background: #f1f1f1;
   border-radius: 2.5px
 }
-.editor-list::-webkit-scrollbar-track,
-.paper-wrap::-webkit-scrollbar-track,
-.styles-list::-webkit-scrollbar-track,
-.textarea::-webkit-scrollbar-track {
+.paper-wrap::-webkit-scrollbar-track {
   width: 5px;
   border-radius: 2.5px
 }
-.editor-list::-webkit-scrollbar-thumb,
-.paper-wrap::-webkit-scrollbar-thumb,
-.styles-list::-webkit-scrollbar-thumb,
-.textarea::-webkit-scrollbar-thumb {
+.paper-wrap::-webkit-scrollbar-thumb {
   background: #1890ff;
   border-radius: 2.5px
 }
@@ -226,92 +218,107 @@ body {
   word-break: break-all;
   overflow: hidden
 }
-.code-btn,
-.editor-theme,
-.page-theme {
-  position: relative;
-  word-break: normal;
-  margin-right: 4rem
+/* 打开设置 */
+.open-setting {
+  height: 5.4rem;
+  width: 5.4rem;
+  text-align: center;
+  line-height: 5.4rem;
+  flex: 1;
 }
-.editor-list,
-.page-list,
-.styles-list {
-  overflow-y: auto;
+.open-setting span {
+  font-size: 3rem;
+  color: #1890ff;
+  transition: all 0.3s ease;
+}
+.open-setting span:hover {
+  font-size: 3.5rem;
+  cursor: pointer;
+}
+/* 侧栏 */
+.setting {
+  z-index: 100;
   position: absolute;
-  top: 29px;
-  left: 0;
-  max-height: 200px;
-  width: 90px;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 25rem;
+  background: #08d9d6;
+  box-shadow: 0 5px 10px 0 rgba(0,64,128,.05);
+  transform: translateX(100%);
+  transition: all 0.5s ease-out;
+}
+.setting-list {
+  height: 100%;
+  overflow: auto;
+  padding-top: 4.5rem;
+  box-sizing: border-box;
+}
+.setting-list::-webkit-scrollbar {
+  display: none;
+}
+.setting .setting-item {
+  min-height: 4.5rem;
+  width: 100%;
+}
+.setting-back {
+  background: #0a0f30;
+  position: absolute;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding: 0 1rem;
+}
+.setting-back span {
+  font-size: 3rem;
+  line-height: 4.5rem;
+  color: #fff;
+  transition: all 0.2s ease-in;
+  flex: 1;
+}
+.setting-back .icon-shouqi {
+  text-align: right;
+}
+.setting-back span:hover {
+  font-size: 3.2rem;
+  cursor: pointer;
+}
+.select-title {
+  line-height: 4.5rem;
+  height: 4.5rem;
+  box-sizing: border-box;
+  padding: 0 1rem;
+  color: #333;
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+}
+.select-title:hover {
+  cursor: pointer;
   background: #fff;
-  border-radius: 5px;
-  box-shadow: 0 10px 40px -10px rgba(0,64,128,.2);
+}
+.select-title span {
+  transform: rotateZ(180deg);
+  transition: all 0.2s ease;
+}
+.setting-item ul {
   margin: 0;
   padding: 0;
-  box-sizing: border-box
-}
-.triangle {
-  width: 0;
-  height: 0;
-  border-top: 5px solid transparent;
-  border-bottom: 5px solid #fff;
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  position: absolute;
-  bottom: -11px;
-  left: 40px
-}
-.editor-list li,
-.page-list li,
-.styles-list li {
-  list-style: none;
-  text-align: center;
-  height: 30px;
-  line-height: 30px;
-  width: 100%;
-  white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;
+  transition: all 0.5s ease;
+}
+.setting-item ul li {
+  list-style: none;
+  height: 4.5rem;
+  line-height: 4.5rem;
   box-sizing: border-box;
-  padding: 0 5px
+  padding-left: 2rem;
 }
-.editor-list li:hover,
-.page-list li:hover,
-.styles-list li:hover {
-  background: #40a9ff;
+.setting-item ul li:hover {
+  background: #fff;
   cursor: pointer;
-  color: #fff
 }
-.active {
-  color: #930077;
-  border-bottom: 2px solid #930077
-}
-.editor-theme-btn,
-.page-theme-btn,
-.theme-btn {
-  position: relative
-}
-.editor-theme-btn,
-.page-theme-btn,
-.theme-btn {
-  cursor: pointer
-}
-.editor-theme-btn::before,
-.page-theme-btn::before,
-.theme-btn::before {
-  content: '';
-  position: absolute;
-  bottom: -4px;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background-color: #930077;
-  transform-origin: bottom right;
-  transform: scaleX(0);
-  transition: transform .5s ease
-}
-.editor-theme-btn:hover::before,
-.page-theme-btn:hover::before,
-.theme-btn:hover::before {
-  transform-origin: bottom left;
-  transform: scaleX(1)
+.theme-active {
+  background: #fff;
 }

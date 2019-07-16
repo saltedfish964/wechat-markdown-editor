@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="shortcut icon" href="favicon.png" type="image/png">
+  <link rel="stylesheet" href="./iconfont/iconfont.css">
   <link rel="stylesheet" href="./css/animation.css">
   <link rel="stylesheet" href="./css/normalize.css">
   <link id="page-theme-css" rel="stylesheet" href="./css/theme/default.css">
@@ -22,27 +23,13 @@
   <div id="container" style="height: 100%; width: 100%; visibility: hidden;">
     <header class="header">
       <div class="title">Wechat Markdown Editor</div>
-      <div id="copy" class="copy" data-clipboard-action="copy" data-clipboard-target="#paper">Copy</div>
 
-      <!-- 渲染的代码样式 -->
-      <div class="code-btn">
-        <span id="code-btn" class="theme-btn">Code Theme</span>
-        <div id="triangle" class="triangle animated bounceInUp" style="display: none;"></div>
-        <ul class="styles-list animated bounceInUp" id="styles-list" style="display: none;"></ul>
+      <div class="copy-wrap">
+        <div id="copy" class="copy" data-clipboard-action="copy" data-clipboard-target="#paper">Copy</div>
       </div>
 
-      <!-- 渲染样式选择 -->
-      <div class="page-theme">
-        <span class="page-theme-btn" id="page-theme-btn">Page Theme</span>
-        <div id="page-triangle" class="triangle animated bounceInUp" style="display: none;"></div>
-        <ul class="page-list animated bounceInUp" id="page-list" style="display: none;"></ul>
-      </div>
-
-      <!-- 编辑器样式选择 -->
-      <div class="editor-theme">
-        <span class="editor-theme-btn" id="editor-theme-btn">Editor Theme</span>
-        <div id="editor-triangle" class="triangle animated bounceInUp" style="display: none;"></div>
-        <ul class="editor-list animated bounceInUp" id="editor-list" style="display: none;"></ul>
+      <div class="open-setting">
+        <span class="iconfont icon-shezhi" id="open-setting"></span>
       </div>
 
       <div class="github-wrap">
@@ -278,11 +265,44 @@ It converts "HTML", but keep intact partial entries like "xxxHTMLyyy" and so on.
 ::: tips
 *here be dragons*
 :::
-          </textarea>
+        </textarea>
       </div>
       <div id="paper-wrap" class="editor-item paper-wrap">
         <div class="content">
           <div id="paper" class="paper"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="setting" id="setting-wrap">
+      <div class="setting-item setting-back">
+        <span class="iconfont icon-wendangguanlixitong-fanhuitubiao" id="setting-back-btn"></span>
+        <span class="iconfont icon-shouqi" id="pack-up-btn"></span>
+      </div>
+
+      <div class="setting-list">
+        <div class="setting-item">
+          <div class="select-title" id="code-btn">
+            选择代码样式
+            <span class="iconfont icon-wendangguanlixitong-fanhuitubiao"></span>
+          </div>
+          <ul id="code-list" style="height: 0"></ul>
+        </div>
+
+        <div class="setting-item">
+          <div class="select-title" id="page-btn">
+            选择文本样式
+            <span class="iconfont icon-wendangguanlixitong-fanhuitubiao"></span>
+          </div>
+          <ul id="page-list" style="height: 0"></ul>
+        </div>
+
+        <div class="setting-item">
+          <div class="select-title" id="editor-btn">
+            选择编辑器样式
+            <span class="iconfont icon-wendangguanlixitong-fanhuitubiao"></span>
+          </div>
+          <ul id="editor-list" style="height: 0"></ul>
         </div>
       </div>
     </div>

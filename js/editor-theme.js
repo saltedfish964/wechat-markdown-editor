@@ -1,5 +1,4 @@
 var editorThemeObj = {
-  'default': 'default',
   '3024-day': '3024-day',
   '3024-night': '3024-night',
   'abcdef': 'abcdef',

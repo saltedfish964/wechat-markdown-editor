@@ -21,10 +21,34 @@ function WechatMarkdownEdit () {
   this.md = this.initMarkdownIt();
 
   this.editor = this.initEditor();
+
+  // 关闭抽屉按钮
+  this.backBtn = this.getElement('#setting-back-btn');
+
+  // 打开抽屉按钮
+  this.openBtn = this.getElement('#open-setting');
+
+  // 折叠所有抽屉
+  this.packUpBtn = this.getElement('#pack-up-btn');
+
+  // 抽屉
+  this.settingWrap = this.getElement('#setting-wrap');
+
+  this.themeGroup = this.getElementAll('.setting-list > .setting-item');
+
+  this.themeActiveIndex;
+
+  this.themeListActiveIndex = [0, 0, 2];
+
+  this.cssDir = ['styles', 'theme', 'codemirror/theme'];
+
+  this.codeThemeLink = this.getElement('#theme-css');
+  this.pageThemeLink = this.getElement('#page-theme-css');
+  this.editorThemeLink = this.getElement('#editor-theme-css');
 }
 
 WechatMarkdownEdit.prototype.init = function () {
-  var that = this;
+  let that = this;
 
   // 初始化整个页面的高度
   that.editorEle.style.height = `${document.documentElement.clientHeight - 54}px`;
@@ -33,9 +57,9 @@ WechatMarkdownEdit.prototype.init = function () {
 
   that.scrollAsync();
 
-  that.initSelect();
-
   that.copy();
+
+  that.buttonEvent();
 }
 
 // 获取单个 dom
@@ -50,7 +74,7 @@ WechatMarkdownEdit.prototype.getElementAll = function (selector) {
 
 // 初始化 Markdown-it
 WechatMarkdownEdit.prototype.initMarkdownIt = function () {
-  var md = window.markdownit({
+  let md = window.markdownit({
     typographer: true,
 
     breaks: true,
@@ -72,7 +96,7 @@ WechatMarkdownEdit.prototype.initMarkdownIt = function () {
 
   md.use(window.markdownitContainer, 'tips', {
     render: function (tokens, idx) {
-      var m = tokens[idx].info.trim().match(/^tips(.*)$/);
+      let m = tokens[idx].info.trim().match(/^tips(.*)$/);
 
       if (tokens[idx].nesting === 1) {
         return '<section class="tips"><p class="tips-title">Tip</p>' + md.utils.escapeHtml(m[1]);
@@ -84,7 +108,7 @@ WechatMarkdownEdit.prototype.initMarkdownIt = function () {
 
   md.use(window.markdownitContainer, 'time', {
     render: function (tokens, idx) {
-      var m = tokens[idx].info.trim().match(/^time(.*)$/);
+      let m = tokens[idx].info.trim().match(/^time(.*)$/);
 
       if (tokens[idx].nesting === 1) {
         return '<section class="time">' + md.utils.escapeHtml(m[1]);
@@ -115,9 +139,9 @@ WechatMarkdownEdit.prototype.initMarkdownIt = function () {
 
 // 初始化 CodeMirror
 WechatMarkdownEdit.prototype.initEditor = function () {
-  var that = this;
+  let that = this;
 
-  var editor = CodeMirror.fromTextArea(that.textareaEle, {
+  let editor = CodeMirror.fromTextArea(that.textareaEle, {
     lineNumbers: false,
     lineWrapping: true,
     styleActiveLine: true,
@@ -134,21 +158,21 @@ WechatMarkdownEdit.prototype.initEditor = function () {
 
 // 渲染
 WechatMarkdownEdit.prototype.renderMarkdown = function () {
-  var that = this;
+  let that = this;
 
-  var mdHtml = that.md.render(that.textareaEle.value);
+  let mdHtml = that.md.render(that.textareaEle.value);
   that.paperEle.innerHTML = mdHtml;
 
   that.editor.on('change', function () {
-    var editorValue = that.editor.getValue();
-    var value = that.md.render(editorValue);
+    let editorValue = that.editor.getValue();
+    let value = that.md.render(editorValue);
     that.paperEle.innerHTML = value;
   })
 }
 
 // 滚动条同步滚动
 WechatMarkdownEdit.prototype.scrollAsync = function () {
-  var that = this;
+  let that = this;
 
   // 初始化文档高度
   that.documentHeight = document.documentElement.clientHeight;
@@ -169,8 +193,8 @@ WechatMarkdownEdit.prototype.scrollAsync = function () {
     that.paperEleScrollHeight = that.paperWrapEle.scrollHeight - that.documentHeight;
 
     that.editorScrollEle.onscroll = function () {
-      var textareaEleScrollTop = that.editorScrollEle.scrollTop;
-      var scale = textareaEleScrollTop / that.editorScrollHeight;
+      let textareaEleScrollTop = that.editorScrollEle.scrollTop;
+      let scale = textareaEleScrollTop / that.editorScrollHeight;
       scale = scale.toFixed(4);
 
       that.paperWrapEle.scrollTop = that.paperEleScrollHeight * scale;
@@ -186,8 +210,8 @@ WechatMarkdownEdit.prototype.scrollAsync = function () {
     that.paperEleScrollHeight = that.paperWrapEle.scrollHeight - that.documentHeight;
 
     that.paperWrapEle.onscroll = function () {
-      var paperEleScrollTop = that.paperWrapEle.scrollTop;
-      var scale = paperEleScrollTop / that.paperEleScrollHeight;
+      let paperEleScrollTop = that.paperWrapEle.scrollTop;
+      let scale = paperEleScrollTop / that.paperEleScrollHeight;
       scale = scale.toFixed(4);
 
       that.editorScrollEle.scrollTop = that.editorScrollHeight * scale;
@@ -201,7 +225,7 @@ WechatMarkdownEdit.prototype.scrollAsync = function () {
 
 // 复制排版好的内容
 WechatMarkdownEdit.prototype.copy = function () {
-  var clipboard = new ClipboardJS('#copy');
+  let clipboard = new ClipboardJS('#copy');
 
   clipboard.on('success', function (e) {
     tata.success('复制成功', '可前往公众号粘贴了(￣▽￣)"', {
@@ -220,130 +244,122 @@ WechatMarkdownEdit.prototype.copy = function () {
   });
 }
 
-// 创建列表
-/*
-Obj:
-  listEleId:String 列表 id
-  triangleEleId:String 三角形 id
-  themeCssEleId:String 样式 link 标签 id
-  btnEleId:String 点击按钮
-  themeObj:Object 样式对象
-  cssdir:String CSS 文件夹下对应的文件夹
-  active:Number 默认选中第几个，0 为第一个，默认为 0
-*/
-WechatMarkdownEdit.prototype.selectList = function (obj, callback) {
-  var that = this;
+WechatMarkdownEdit.prototype.buttonEvent = function () {
+  let that = this;
+  let themeTypeList = [themeObj, pageThemeObj, editorThemeObj];
+  let ulList = [];
 
-  var active = obj.active || 0;
-
-  var ListEle = that.getElement(obj.listEleId);
-  var triangleEle = that.getElement(obj.triangleEleId);
-  var themeCssEle = that.getElement(obj.themeCssEleId);
-  var btnEle = that.getElement(obj.btnEleId);
-
-  btnEle.onclick = function () {
-    ListEle.style.display = 'block';
-    triangleEle.style.display = 'block';
-  }
-
-  ListEle.onmouseleave = function () {
-    ListEle.classList.remove('bounceInUp');
-    ListEle.classList.add('bounceOutDown');
-
-    triangleEle.classList.remove('bounceInUp');
-    triangleEle.classList.add('bounceOutDown');
-
-    var tempAnimation = function () {
-      ListEle.style.display = 'none';
-      triangleEle.style.display = 'none';
-
-      ListEle.classList.add('bounceInUp');
-      ListEle.classList.remove('bounceOutDown');
-
-      triangleEle.classList.add('bounceInUp');
-      triangleEle.classList.remove('bounceOutDown');
-
-      ListEle.removeEventListener('animationend', tempAnimation, false);
-    }
-
-    if (ListEle.style.display === 'block') {
-      ListEle.addEventListener('animationend', tempAnimation, false)
+  that.backBtn.onclick = function () {
+    that.settingWrap.style.transform = 'translateX(100%)';
+    that.settingWrap.style.opacity = '0';
+    if (typeof that.themeActiveIndex !== 'undefined') {
+      that.themeGroup[that.themeActiveIndex].children[0].children[0].style.transform = 'rotateZ(180deg)';
+      that.themeGroup[that.themeActiveIndex].children[0].classList.remove('theme-active');
+      that.themeGroup[that.themeActiveIndex].children[1].style.height = '0px';
     }
   }
 
-  for (var item in obj.themeObj) {
-    var li = document.createElement('li');
-    var text = document.createTextNode(item);
-
-    li.classList.add('code-item');
-
-    li.title = item;
-
-    li.appendChild(text);
-
-    li.onclick = function (e) {
-      var href = `./css/${obj.cssdir}/${e.target.title}.css`;
-      var allLi = ListEle.getElementsByClassName('code-item');
-
-      for (var i = 0; i < allLi.length; i++) {
-        allLi[i].classList.remove('active');
-      }
-
-      e.target.classList.add('active');
-      themeCssEle.setAttribute('href', href);
-
-      if (obj.themeCssEleId === '#editor-theme-css') {
-        that.editor.setOption("theme", e.target.title);
-      }
-
-      if (typeof callback === 'function') {
-        callback(e);
-      }
-    }
-
-    ListEle.appendChild(li);
+  that.openBtn.onclick = function () {
+    that.settingWrap.style.transform = 'translateX(0)';
+    that.settingWrap.style.opacity = '1';
   }
 
-  ListEle.getElementsByClassName('code-item')[active].classList.add('active');
-}
+  that.packUpBtn.onclick = function () {
+    that.themeGroup[that.themeActiveIndex].children[0].classList.remove('theme-active');
+    that.themeGroup[that.themeActiveIndex].children[1].style.height = '0px';
+  }
 
-// 创建样式列表
-WechatMarkdownEdit.prototype.initSelect = function () {
-  var that = this;
+  for (let i = 0; i < that.themeGroup.length; i++) {
+    ulList.push(that.themeGroup[i].children[1]);
 
-  that.selectList({
-    listEleId: '#styles-list',
-    triangleEleId: '#triangle',
-    themeCssEleId: '#theme-css',
-    btnEleId: '#code-btn',
-    themeObj: themeObj,
-    cssdir: 'styles',
-  });
-
-  that.selectList({
-    listEleId: '#page-list',
-    triangleEleId: '#page-triangle',
-    themeCssEleId: '#page-theme-css',
-    btnEleId: '#page-theme-btn',
-    themeObj: pageThemeObj,
-    cssdir: 'theme',
-  }, function (e) {
-    if (e.target.title === 'stormzhang') {
-      that.editor.setValue(themeText);
-    } else {
-      that.editor.setValue(themeDefaultText);
+    that.themeGroup[i].children[0].onclick = function (e) {
+      if (that.themeActiveIndex !== i) {
+        if (typeof that.themeActiveIndex !== 'undefined') {
+          that.themeGroup[that.themeActiveIndex].children[0].classList.remove('theme-active');
+          that.themeGroup[that.themeActiveIndex].children[1].style.height = '0px';
+        }
+        that.themeActiveIndex = i;
+        let height = 4.5 * that.themeGroup[i].children[1].children.length;
+        if (that.themeGroup[i].children[1].style.height === '0px') {
+          e.target.children[0].style.transform = 'rotateZ(90deg)';
+          that.themeGroup[i].children[1].style.height = height + 'rem';
+          e.target.classList.add('theme-active');
+        }
+      } else {
+        let height = 4.5 * that.themeGroup[i].children[1].children.length;
+        if (that.themeGroup[i].children[1].style.height === '0px') {
+          e.target.children[0].style.transform = 'rotateZ(90deg)';
+          that.themeGroup[i].children[1].style.height = height + 'rem';
+          e.target.classList.add('theme-active');
+        } else {
+          e.target.children[0].style.transform = 'rotateZ(180deg)';
+          that.themeGroup[i].children[1].style.height = '0px';
+          that.themeGroup[that.themeActiveIndex].children[0].classList.remove('theme-active');
+        }
+      }
     }
-  });
+  }
 
-  that.selectList({
-    listEleId: '#editor-list',
-    triangleEleId: '#editor-triangle',
-    themeCssEleId: '#editor-theme-css',
-    btnEleId: '#editor-theme-btn',
-    themeObj: editorThemeObj,
-    cssdir: 'codemirror/theme',
-    active: 2,
-  });
+  for (let i = 0; i < themeTypeList.length; i++) {
+    for (let item in themeTypeList[i]) {
+      let li = document.createElement('li');
+      let text = document.createTextNode(item);
+      li.title = item;
+      li.appendChild(text);
+      ulList[i].appendChild(li);
+    }
+  }
+
+  for (let i = 0; i < ulList.length; i++) {
+    ulList[i].children[that.themeListActiveIndex[i]].classList.add('theme-active');
+    for (let j = 0; j < ulList[i].children.length; j++) {
+      if (that.cssDir[i] === 'styles') {
+        ulList[i].children[j].onclick = function (e) {
+          let href = `./css/${that.cssDir[i]}/${e.target.title}.css`;
+
+          ulList[i].children[that.themeListActiveIndex[i]].classList.remove('theme-active');
+
+          ulList[i].children[j].classList.add('theme-active');
+
+          that.themeListActiveIndex[i] = j;
+
+          that.codeThemeLink.setAttribute('href', href);
+        }
+      } else if (that.cssDir[i] === 'theme') {
+        ulList[i].children[j].onclick = function (e) {
+          let href = `./css/${that.cssDir[i]}/${e.target.title}.css`;
+
+          ulList[i].children[that.themeListActiveIndex[i]].classList.remove('theme-active');
+
+          ulList[i].children[j].classList.add('theme-active');
+
+          that.pageThemeLink.setAttribute('href', href);
+
+          if (e.target.title === 'stormzhang') {
+            that.editor.setValue(themeText);
+          } else {
+            that.editor.setValue(themeDefaultText);
+          }
+
+          that.themeListActiveIndex[i] = j;
+        }
+      } else {
+        ulList[i].children[j].onclick = function (e) {
+          let href = `./css/${that.cssDir[i]}/${e.target.title}.css`;
+
+          ulList[i].children[that.themeListActiveIndex[i]].classList.remove('theme-active');
+
+          ulList[i].children[j].classList.add('theme-active');
+
+          that.editorThemeLink.setAttribute('href', href);
+
+          that.editor.setOption("theme", e.target.title);
+
+          that.themeListActiveIndex[i] = j;
+        }
+      }
+    }
+  }
 }
 
 window.onload = function () {
