@@ -275,6 +275,7 @@ WechatMarkdownEdit.prototype.buttonEvent = function () {
     that.themeGroup[i].children[0].onclick = function (e) {
       if (that.themeActiveIndex !== i) {
         if (typeof that.themeActiveIndex !== 'undefined') {
+          that.themeGroup[that.themeActiveIndex].children[0].children[0].style.transform = 'rotateZ(180deg)';
           that.themeGroup[that.themeActiveIndex].children[0].classList.remove('theme-active');
           that.themeGroup[that.themeActiveIndex].children[1].style.height = '0px';
         }
@@ -311,15 +312,15 @@ WechatMarkdownEdit.prototype.buttonEvent = function () {
   }
 
   for (let i = 0; i < ulList.length; i++) {
-    ulList[i].children[that.themeListActiveIndex[i]].classList.add('theme-active');
+    ulList[i].children[that.themeListActiveIndex[i]].classList.add('li-active');
     for (let j = 0; j < ulList[i].children.length; j++) {
       if (that.cssDir[i] === 'styles') {
         ulList[i].children[j].onclick = function (e) {
           let href = `./css/${that.cssDir[i]}/${e.target.title}.css`;
 
-          ulList[i].children[that.themeListActiveIndex[i]].classList.remove('theme-active');
+          ulList[i].children[that.themeListActiveIndex[i]].classList.remove('li-active');
 
-          ulList[i].children[j].classList.add('theme-active');
+          ulList[i].children[j].classList.add('li-active');
 
           that.themeListActiveIndex[i] = j;
 
@@ -329,9 +330,9 @@ WechatMarkdownEdit.prototype.buttonEvent = function () {
         ulList[i].children[j].onclick = function (e) {
           let href = `./css/${that.cssDir[i]}/${e.target.title}.css`;
 
-          ulList[i].children[that.themeListActiveIndex[i]].classList.remove('theme-active');
+          ulList[i].children[that.themeListActiveIndex[i]].classList.remove('li-active');
 
-          ulList[i].children[j].classList.add('theme-active');
+          ulList[i].children[j].classList.add('li-active');
 
           that.pageThemeLink.setAttribute('href', href);
 
@@ -347,9 +348,9 @@ WechatMarkdownEdit.prototype.buttonEvent = function () {
         ulList[i].children[j].onclick = function (e) {
           let href = `./css/${that.cssDir[i]}/${e.target.title}.css`;
 
-          ulList[i].children[that.themeListActiveIndex[i]].classList.remove('theme-active');
+          ulList[i].children[that.themeListActiveIndex[i]].classList.remove('li-active');
 
-          ulList[i].children[j].classList.add('theme-active');
+          ulList[i].children[j].classList.add('li-active');
 
           that.editorThemeLink.setAttribute('href', href);
 
@@ -369,4 +370,4 @@ window.onload = function () {
 window.addEventListener('load', function () {
   this.document.getElementById('loading').style.display = 'none';
   this.document.getElementById('container').style.visibility = 'visible';
-})
+});

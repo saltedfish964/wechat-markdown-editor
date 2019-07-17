@@ -16,6 +16,7 @@ body {
     overflow: hidden;
     width: 12rem;
     flex: 1;
+    position: relative
   }
   .github {
     background: #333;
@@ -26,28 +27,22 @@ body {
     position: relative;
     top: 50%;
     width: 12rem;
-    text-align: center
+    text-align: center;
+    position: absolute;
+    right: 0
   }
   .github-text {
     text-decoration: none;
     color: #fff
   }
 }
-@media (max-width: 1439px) {
+@media (max-width:1439px) {
+  .title {
+    flex: 0 0 70%;
+    font-size: 24px
+  }
   .github-wrap {
-    display: none;
-  }
-}
-@media (min-width:1025px) and (max-width:1439px) {
-  .title {
-    flex: 0 0 48%;
-    font-size: 2.4rem
-  }
-}
-@media (min-width:768px) and (max-width:1024px) {
-  .title {
-    flex: 0 0 30%;
-    font-size: 16px
+    display: none
   }
 }
 @media (min-width:850px) {
@@ -71,8 +66,7 @@ body {
 }
 @media (max-width:320px) {
   .title {
-    flex: 0 0 75%;
-    font-size: 16px
+    display: none
   }
 }
 .loading-wrap {
@@ -142,6 +136,7 @@ body {
   flex: 1;
   box-sizing: border-box;
   padding-right: 1rem;
+  padding-left: 1rem
 }
 .copy {
   z-index: 0;
@@ -149,12 +144,12 @@ body {
   font-size: inherit;
   font-family: inherit;
   color: #fff;
-  padding: 0.5em 1em;
+  padding: .5em 1em;
   outline: 0;
   border: none;
   background-color: #1890ff;
   border-radius: 5px;
-  width: 4rem;
+  width: 4rem
 }
 .copy::before {
   content: '';
@@ -218,24 +213,24 @@ body {
   word-break: break-all;
   overflow: hidden
 }
-/* 打开设置 */
 .open-setting {
   height: 5.4rem;
   width: 5.4rem;
-  text-align: center;
+  text-align: right;
   line-height: 5.4rem;
-  flex: 1;
+  box-sizing: border-box;
+  padding-right: 1rem;
+  flex: 1
 }
 .open-setting span {
   font-size: 3rem;
   color: #1890ff;
-  transition: all 0.3s ease;
+  transition: all .3s ease
 }
 .open-setting span:hover {
   font-size: 3.5rem;
-  cursor: pointer;
+  cursor: pointer
 }
-/* 侧栏 */
 .setting {
   z-index: 100;
   position: absolute;
@@ -246,20 +241,21 @@ body {
   background: #08d9d6;
   box-shadow: 0 5px 10px 0 rgba(0,64,128,.05);
   transform: translateX(100%);
-  transition: all 0.5s ease-out;
+  transition: all .5s ease-out
 }
 .setting-list {
   height: 100%;
   overflow: auto;
   padding-top: 4.5rem;
   box-sizing: border-box;
+  background: #282b33
 }
 .setting-list::-webkit-scrollbar {
-  display: none;
+  display: none
 }
 .setting .setting-item {
   min-height: 4.5rem;
-  width: 100%;
+  width: 100%
 }
 .setting-back {
   background: #0a0f30;
@@ -268,45 +264,46 @@ body {
   display: flex;
   justify-content: space-between;
   box-sizing: border-box;
-  padding: 0 1rem;
+  padding: 0 1rem
 }
 .setting-back span {
   font-size: 3rem;
   line-height: 4.5rem;
   color: #fff;
-  transition: all 0.2s ease-in;
-  flex: 1;
+  transition: all .2s ease-in;
+  flex: 1
 }
 .setting-back .icon-shouqi {
-  text-align: right;
+  text-align: right
 }
 .setting-back span:hover {
   font-size: 3.2rem;
-  cursor: pointer;
+  cursor: pointer
 }
 .select-title {
   line-height: 4.5rem;
   height: 4.5rem;
   box-sizing: border-box;
   padding: 0 1rem;
-  color: #333;
+  color: #fff;
   display: flex;
   justify-content: space-between;
-  font-weight: bold;
+  font-weight: 700;
+  background: #393d49
 }
 .select-title:hover {
   cursor: pointer;
-  background: #fff;
+  background: #4e5465
 }
 .select-title span {
   transform: rotateZ(180deg);
-  transition: all 0.2s ease;
+  transition: all .2s ease
 }
 .setting-item ul {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  transition: all 0.5s ease;
+  transition: all .5s ease
 }
 .setting-item ul li {
   list-style: none;
@@ -314,11 +311,16 @@ body {
   line-height: 4.5rem;
   box-sizing: border-box;
   padding-left: 2rem;
+  color: #bfc0c2
 }
 .setting-item ul li:hover {
-  background: #fff;
-  cursor: pointer;
+  color: #fff;
+  cursor: pointer
 }
 .theme-active {
-  background: #fff;
+  background: #4e5465
+}
+.setting-item ul .li-active {
+  background: #009688;
+  color: #fff
 }
