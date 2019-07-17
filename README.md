@@ -15,9 +15,7 @@
 > 这是一个微信公众号自动排版工具。
 > This is a Wechat Markdown Editor.
 
-### 🏠 [项目预览](https://didadi599.github.io/wechat-markdown-editor)
-
-### 🏠 [Homepage](https://didadi599.github.io/wechat-markdown-editor)
+### 🏠 [项目预览 Homepage](https://didadi599.github.io/wechat-markdown-editor)
 
 ## 作者 Author
 
