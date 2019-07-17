@@ -12,21 +12,26 @@
   </a>
 </p>
 
+> 这是一个微信公众号自动排版工具。
 > This is a Wechat Markdown Editor.
+
+### 🏠 [项目预览](https://didadi599.github.io/wechat-markdown-editor)
 
 ### 🏠 [Homepage](https://didadi599.github.io/wechat-markdown-editor)
 
-## Author
+## 作者 Author
 
 👤 **didadi599**
 
 * Github: [@didadi599](https://github.com/didadi599)
 
-## 🤝 Contributing
+## 🤝 贡献 Contributing
+
+欢迎提供贡献，问题和功能 !<br />查看 [issues 页面](https://github.com/didadi599/wechat-markdown-editor/issues).
 
 Contributions, issues and feature requests are welcome !<br />Feel free to check [issues page](https://github.com/didadi599/wechat-markdown-editor/issues).
 
-## Get Start
+## 开始使用 Get Start
 
 ```shell
 git clone git@github.com:didadi599/wechat-markdown-editor.git
@@ -34,11 +39,13 @@ git clone git@github.com:didadi599/wechat-markdown-editor.git
 # open index.html
 ```
 
-## Show your support
+## 支持 Show your support
+
+项目对你有帮助的话可以给个 ⭐️
 
 Give a ⭐️ if this project helped you !
 
-## 📝 License
+## 📝 许可 License
 
 Copyright © 2019 [didadi599](https://github.com/didadi599).<br />
 This project is [MIT](https://github.com/didadi599/wechat-markdown-editor/blob/master/LICENSE) licensed.
