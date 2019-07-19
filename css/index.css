@@ -138,7 +138,8 @@ body {
   padding-right: 1rem;
   padding-left: 1rem
 }
-.copy {
+.copy,
+.customize {
   z-index: 0;
   position: relative;
   font-size: inherit;
@@ -149,9 +150,11 @@ body {
   border: none;
   background-color: #1890ff;
   border-radius: 5px;
+  text-align: center;
   width: 4rem
 }
-.copy::before {
+.copy::before,
+.customize::before {
   content: '';
   z-index: -1;
   position: absolute;
@@ -164,15 +167,20 @@ body {
   border-radius: 5px;
   transform: scale(1)
 }
-.copy:hover {
+.copy:hover,
+.customize:hover {
   cursor: pointer;
   background: #40a9ff
 }
-.copy:hover::before {
+.copy:hover::before,
+.customize:hover::before {
   transition: all .75s ease-in-out;
   transform-origin: center;
   transform: scale(1.75);
   opacity: 0
+}
+.customize {
+  width: auto;
 }
 .editor {
   display: flex

@@ -4,14 +4,12 @@
   设置 code 标签需要用到 .paper .code-inline
 */
 .paper {
-  padding: 1.6rem
+  padding: 1.6rem;
+  color: #333;
+  font-size: 14px
 }
 .paper * {
   box-sizing: border-box
-}
-.paper {
-  color: #333;
-  font-size: 14px
 }
 .paper hr {
   margin-top: 20px;

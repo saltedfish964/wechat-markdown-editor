@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="./css/codemirror/codemirror.css">
   <link id="editor-theme-css" rel="stylesheet" href="./css/codemirror/theme/3024-night.css">
   <title>Wechat Markdown Editor</title>
+  <style id="style-wrap"></style>
 </head>
 <body>
   <div class="loading-wrap" id="loading">
@@ -23,6 +24,8 @@
   <div id="container" style="height: 100%; width: 100%; visibility: hidden;">
     <header class="header">
       <div class="title">Wechat Markdown Editor</div>
+
+      <div id="self-style-btn" class="customize">自定义样式</div>
 
       <div class="copy-wrap">
         <div id="copy" class="copy" data-clipboard-action="copy" data-clipboard-target="#paper">Copy</div>
@@ -266,6 +269,8 @@ It converts "HTML", but keep intact partial entries like "xxxHTMLyyy" and so on.
 *here be dragons*
 :::
         </textarea>
+
+        <textarea id="style-textarea"></textarea>
       </div>
       <div id="paper-wrap" class="editor-item paper-wrap">
         <div class="content">
@@ -326,6 +331,7 @@ It converts "HTML", but keep intact partial entries like "xxxHTMLyyy" and so on.
   <script src="./js/editor-theme.js"></script>
   <script src="./js/codemirror/codemirror.js"></script>
   <script src="./js/codemirror/markdown.js"></script>
+  <script src="./js/codemirror/css.js"></script>
   <script src="./js/theme-text.js"></script>
   <script src="./js/index.js"></script>
 </body>

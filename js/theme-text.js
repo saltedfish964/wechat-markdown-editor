@@ -235,3 +235,173 @@ It converts "HTML", but keep intact partial entries like "xxxHTMLyyy" and so on.
 ::: tips
 *here be dragons*
 :::`;
+
+let defaultCss = `/*
+  所有定制样式写在 .paper 选择器下
+  .paper 类是包裹元素
+  设置 code 标签需要用到 .paper .code-inline
+*/
+.paper {
+  padding: 1.6rem;
+  color: #333;
+  font-size: 14px
+}
+.paper * {
+  box-sizing: border-box
+}
+.paper hr {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: 0;
+  border-top: 1px solid #eee
+}
+.paper strong {
+  font-weight: 700
+}
+.paper a {
+  color: #428bca;
+  text-decoration: none;
+  background: 0 0
+}
+.paper p {
+  margin: 10px 0;
+  line-height: 1.7
+}
+.paper h1 {
+  font-size: 36px
+}
+.paper h2 {
+  font-size: 30px
+}
+.paper h3 {
+  font-size: 24px
+}
+.paper h4 {
+  font-size: 18px
+}
+.paper h5 {
+  font-size: 14px
+}
+.paper h6 {
+  font-size: 12px
+}
+.paper h1,
+.paper h2,
+.paper h3 {
+  margin-top: 20px;
+  margin-bottom: 10px
+}
+.paper h1,
+.paper h2,
+.paper h3,
+.paper h4,
+.paper h5,
+.paper h6 {
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.1;
+  color: inherit
+}
+.paper blockquote {
+  padding: 10px 20px;
+  margin: 0 0 20px;
+  font-size: 17.5px;
+  border-left: 5px solid #eee
+}
+.paper .code-inline {
+  padding: 2px 4px;
+  font-size: 90%;
+  color: #c7254e;
+  background-color: #f9f2f4;
+  border-radius: 4px
+}
+.paper .code-block {
+  display: block;
+  padding: 9.5px;
+  margin: 0 0 10px;
+  font-size: 13px;
+  line-height: 1.42857143;
+  color: #333;
+  word-break: break-all;
+  word-wrap: break-word;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 4px
+}
+.paper .hljs {
+  border-radius: 4px
+}
+.paper table {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 20px;
+  border-spacing: 0
+}
+.paper table > thead:first-child > tr:first-child > th {
+  border-top: 0
+}
+.paper th {
+  vertical-align: bottom;
+  border-bottom: 2px solid #ddd;
+  padding: 8px;
+  line-height: 1.42857143;
+  text-align: left;
+  word-break: normal
+}
+.paper tr:nth-child(odd) td {
+  background-color: #f9f9f9
+}
+.paper td {
+  padding: 8px;
+  line-height: 1.42857143;
+  vertical-align: top;
+  border-top: 1px solid #ddd
+}
+.paper img {
+  max-width: 35%;
+  vertical-align: middle
+}
+.paper mark {
+  padding: .2em;
+  background-color: #fcf8e3
+}
+.paper dt {
+  font-weight: 700
+}
+.paper dd {
+  margin-left: 0
+}
+.paper dd,
+.paper dt {
+  line-height: 1.42857143
+}
+.paper abbr[title] {
+  cursor: help;
+  border-bottom: 1px dotted #777
+}
+.paper .tips {
+  background-color: #f3f5f7;
+  border-color: #42b983;
+  padding: .1rem 1.5rem;
+  border-left-width: .5rem;
+  border-left-style: solid;
+  margin: 1rem 0
+}
+.paper .tips .tips-title {
+  font-weight: 600;
+  margin-bottom: -.4rem
+}
+.paper .footnotes {
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  -moz-column-count: 2;
+  -webkit-column-count: 2;
+  column-count: 2
+}
+.paper .footnotes-list {
+  padding-left: 2em
+}
+.paper ol,
+.paper ul {
+  margin-top: -10px;
+  margin-bottom: 10px
+}`;
