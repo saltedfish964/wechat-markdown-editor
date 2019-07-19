@@ -193,6 +193,12 @@ WechatMarkdownEdit.prototype.customizeStyle = function () {
   let pageListLis = that.getElementAll('#page-list > li');
 
   that.selfStyleBtn.onclick = function () {
+    that.editor.setValue(themeDefaultText);
+
+    if (!localStorage.getItem('defaultcss')) {
+      localStorage.setItem('defaultcss', defaultCss);
+    }
+
     if (that.selfStyleBtn.innerHTML === '自定义样式') {
       that.editor.display.wrapper.style.display = 'none';
       that.selfStyleBtn.innerHTML = '保存';
@@ -206,7 +212,7 @@ WechatMarkdownEdit.prototype.customizeStyle = function () {
 
         that.styleWrap = that.getElement('#style-wrap');
 
-        that.styleWrap.innerHTML = defaultCss;
+        that.styleWrap.innerHTML = localStorage.getItem('defaultcss');
       }
 
       if (typeof that.styleEditor === 'undefined') {
@@ -236,11 +242,7 @@ WechatMarkdownEdit.prototype.customizeStyle = function () {
       localStorage.setItem('activeList', activeListStr);
     }
 
-    if (!localStorage.getItem('defaultcss')) {
-      that.styleEditor.setValue(defaultCss);
-    } else {
-      that.styleEditor.setValue(localStorage.getItem('defaultcss'));
-    }
+    that.styleEditor.setValue(localStorage.getItem('defaultcss'));
 
     that.styleEditor.on('change', function () {
       that.styleWrap.innerHTML = that.styleEditor.getValue();

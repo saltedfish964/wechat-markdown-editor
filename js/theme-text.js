@@ -267,6 +267,23 @@ let defaultCss = `/*
   margin: 10px 0;
   line-height: 1.7
 }
+.paper h1,
+.paper h2,
+.paper h3 {
+  margin-top: 20px;
+  margin-bottom: 10px
+}
+.paper h1,
+.paper h2,
+.paper h3,
+.paper h4,
+.paper h5,
+.paper h6 {
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.1;
+  color: inherit
+}
 .paper h1 {
   font-size: 36px
 }
@@ -284,23 +301,6 @@ let defaultCss = `/*
 }
 .paper h6 {
   font-size: 12px
-}
-.paper h1,
-.paper h2,
-.paper h3 {
-  margin-top: 20px;
-  margin-bottom: 10px
-}
-.paper h1,
-.paper h2,
-.paper h3,
-.paper h4,
-.paper h5,
-.paper h6 {
-  font-family: inherit;
-  font-weight: 500;
-  line-height: 1.1;
-  color: inherit
 }
 .paper blockquote {
   padding: 10px 20px;
