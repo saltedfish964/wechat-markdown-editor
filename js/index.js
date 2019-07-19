@@ -46,6 +46,10 @@ function WechatMarkdownEdit () {
   this.pageThemeLink = this.getElement('#page-theme-css');
   this.editorThemeLink = this.getElement('#editor-theme-css');
 
+  this.codeList;
+  this.pageList;
+  this.editorList;
+
   // 自定义样式
   this.selfStyleBtn = this.getElement('#self-style-btn');
   this.styleTextareaEle = this.getElement('#style-textarea');
@@ -86,10 +90,17 @@ WechatMarkdownEdit.prototype.getElementAll = function (selector) {
 WechatMarkdownEdit.prototype.initLocalStorage = function () {
   let that = this;
 
-  if (localStorage.getItem('defaultcss')) {
-    that.themeListActiveIndex[1] = 0;
+  if (localStorage.getItem('activeList')) {
+    let tempList = JSON.parse(localStorage.getItem('activeList'));
+    that.themeListActiveIndex = tempList;
+  }
+
+  if (localStorage.getItem('defaultcss') && that.themeListActiveIndex[1] === 0) {
     that.styleWrap.innerHTML = localStorage.getItem('defaultcss');
   }
+
+  let activeListStr = JSON.stringify(that.themeListActiveIndex)
+  localStorage.setItem('activeList', activeListStr);
 }
 
 // 初始化 Markdown-it
@@ -181,15 +192,12 @@ WechatMarkdownEdit.prototype.customizeStyle = function () {
   let that = this;
   let pageListLis = that.getElementAll('#page-list > li');
 
-  console.log(pageListLis)
-
   that.selfStyleBtn.onclick = function () {
     if (that.selfStyleBtn.innerHTML === '自定义样式') {
       that.editor.display.wrapper.style.display = 'none';
       that.selfStyleBtn.innerHTML = '保存';
 
       if (that.getElement('#style-wrap') === null) {
-        console.log('a');
         let style = document.createElement('style');
 
         style.id = 'style-wrap';
@@ -224,6 +232,8 @@ WechatMarkdownEdit.prototype.customizeStyle = function () {
       pageListLis[that.themeListActiveIndex[1]].classList.remove('li-active');
       pageListLis[0].classList.add('li-active');
       that.themeListActiveIndex[1] = 0;
+      let activeListStr = JSON.stringify(that.themeListActiveIndex)
+      localStorage.setItem('activeList', activeListStr);
     }
 
     if (!localStorage.getItem('defaultcss')) {
@@ -406,6 +416,9 @@ WechatMarkdownEdit.prototype.buttonEvent = function () {
 
           that.themeListActiveIndex[i] = j;
 
+          let activeListStr = JSON.stringify(that.themeListActiveIndex)
+          localStorage.setItem('activeList', activeListStr);
+
           that.codeThemeLink.setAttribute('href', href);
         }
       } else if (that.cssDir[i] === 'theme') {
@@ -443,6 +456,9 @@ WechatMarkdownEdit.prototype.buttonEvent = function () {
           }
 
           that.themeListActiveIndex[i] = j;
+
+          let activeListStr = JSON.stringify(that.themeListActiveIndex)
+          localStorage.setItem('activeList', activeListStr);
         }
       } else {
         ulList[i].children[j].onclick = function (e) {
@@ -454,15 +470,48 @@ WechatMarkdownEdit.prototype.buttonEvent = function () {
 
           that.editorThemeLink.setAttribute('href', href);
 
-          that.styleEditor.setOption('theme', e.target.title);
+          if (that.styleEditor) {
+            that.styleEditor.setOption('theme', e.target.title);
+          }
 
           that.editor.setOption('theme', e.target.title);
 
           that.themeListActiveIndex[i] = j;
+
+          let activeListStr = JSON.stringify(that.themeListActiveIndex)
+          localStorage.setItem('activeList', activeListStr);
         }
       }
     }
   }
+
+  that.codeList = that.getElementAll('#code-list > li');
+  that.pageList = that.getElementAll('#page-list > li');
+  that.editorList = that.getElementAll('#editor-list > li');
+
+  if (that.pageList[that.themeListActiveIndex[1]].title === 'stormzhang') {
+    that.editor.setValue(themeText);
+  }
+
+  let codeHref = `./css/styles/${that.codeList[that.themeListActiveIndex[0]].title}.css`;
+  let pageHref = `./css/theme/${that.pageList[that.themeListActiveIndex[1]].title}.css`;
+  let editorHref = `./css/codemirror/theme/${that.editorList[that.themeListActiveIndex[2]].title}.css`;
+
+  that.codeThemeLink.setAttribute('href', codeHref);
+
+  if (that.pageList[that.themeListActiveIndex[1]].title === '我的样式') {
+    let style = document.createElement('style');
+    style.id = 'style-wrap';
+    that.getElement('head').appendChild(style);
+    that.styleWrap = that.getElement('#style-wrap');
+    that.styleWrap.innerHTML = localStorage.getItem('defaultcss');
+    that.editor.setValue(themeDefaultText);
+  } else {
+    that.pageThemeLink.setAttribute('href', pageHref);
+  }
+
+  that.editorThemeLink.setAttribute('href', editorHref);
+  that.editor.setOption('theme', that.editorList[that.themeListActiveIndex[2]].title);
 }
 
 window.onload = function () {
